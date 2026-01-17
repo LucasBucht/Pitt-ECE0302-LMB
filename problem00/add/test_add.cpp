@@ -12,3 +12,15 @@ TEST_CASE("Test add", "[Add]"){
 }
 
 /* Your tests here */
+
+TEST_CASE("Test add 2", "[Add]"){
+
+  Add<double> b;
+  REQUIRE(b.call(1.0,2.0)==3.0);
+}
+
+TEST_CASE("Test add 3", "[Add]"){
+
+  Add<bool> c;
+  REQUIRE(c.call(true,false)==true);
+}
