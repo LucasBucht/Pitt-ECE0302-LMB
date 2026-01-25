@@ -99,3 +99,23 @@ void BitArray::toggle(intmax_t index){
     m_bits[index] = !m_bits[index];
 }
 
+// Test
+bool BitArray::test(intmax_t index){
+    if (index < 0 || index >= m_size){
+        m_good = false;
+        return;
+    }
+    return m_bits[index];
+}
+
+// asString
+std::string BitArray::asString() const{
+    std::string result;
+    for (intmax_t i= m_size - 1; i >= 0; i--){
+        if (m_bits[i])
+            result.push_back('1');
+        else
+            result.push_back('0');
+    }
+    return result;
+}
