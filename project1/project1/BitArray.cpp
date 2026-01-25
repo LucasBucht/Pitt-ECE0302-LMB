@@ -43,14 +43,17 @@ BitArray::BitArray(const std::string & value){
     m_bits = new bool[m_size];
 
     for (intmax_t i = 0; i < m_size; i++){
-        char c = value[m_size - i - 1];
-        if (c == '0')
-            m_bits[i] = false;
-        else if (c == '1')
-            m_bits[i] = true;
-        else
+        char c = value[i];
+        if (c == '0'){
+            m_bits[m_size - 1 - i] = false;
+        }
+        else if (c == '1'){
+            m_bits[m_size - 1 - i] = true;
+        }
+        else{
             m_good = false;
             return;
+        }   
     }
 }
 
