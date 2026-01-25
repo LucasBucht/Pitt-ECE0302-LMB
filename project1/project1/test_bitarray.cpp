@@ -44,4 +44,4 @@ TEST_CASE( "Bitarray: Test set", "[bitarray]" ) {
 }
 
 
-/* Your test cases here */
+// My Test Cases

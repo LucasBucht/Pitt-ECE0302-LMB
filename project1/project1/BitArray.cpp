@@ -103,7 +103,7 @@ void BitArray::toggle(intmax_t index){
 bool BitArray::test(intmax_t index){
     if (index < 0 || index >= m_size){
         m_good = false;
-        return;
+        return false;
     }
     return m_bits[index];
 }
