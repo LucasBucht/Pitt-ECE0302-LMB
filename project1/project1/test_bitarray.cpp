@@ -86,3 +86,9 @@ TEST_CASE( "Bitarray: Test invalid index makes bitset invalid", "[bitarray]" ) {
     b.set(8);
     REQUIRE_FALSE(b.good());
 }
+
+TEST_CASE( "Bitarray: Test invalid size constructor", "[bitarray]" ) {
+    BitArray b(0);
+    REQUIRE_FALSE(b.good());
+    REQUIRE(b.size() == 0);
+}
