@@ -78,3 +78,11 @@ TEST_CASE( "Bitarray: Test test()", "[bitarray]" ) {
     REQUIRE_FALSE(b.test(0));
     REQUIRE(b.good());
 }
+
+TEST_CASE( "Bitarray: Test invalid index makes bitset invalid", "[bitarray]" ) {
+    BitArray b(8);
+    REQUIRE(b.good());
+
+    b.set(8);
+    REQUIRE_FALSE(b.good());
+}
