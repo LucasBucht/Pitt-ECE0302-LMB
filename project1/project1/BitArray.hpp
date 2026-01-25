@@ -35,7 +35,9 @@ public:
 
 private:
 
-  // TODO
+  intmax_t m_size;
+  bool* m_bits;
+  bool m_good;
 };
 
 #endif
