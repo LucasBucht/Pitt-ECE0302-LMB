@@ -45,3 +45,14 @@ TEST_CASE( "Bitarray: Test set", "[bitarray]" ) {
 
 
 // My Test Cases
+
+TEST_CASE( "Bitarray: Test reset", "[bitarray]" ) {
+    BitArray b;
+    b.set(0);
+    b.set(7);
+    REQUIRE(b.asString() == "10000001");
+
+    b.reset(0);
+    REQUIRE(b.good());
+    REQUIRE(b.asString() == "10000000");
+}
