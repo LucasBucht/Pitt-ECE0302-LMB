@@ -67,3 +67,14 @@ TEST_CASE( "Bitarray: Test toggle", "[bitarray]" ) {
     b.toggle(3); // toggle back
     REQUIRE(b.asString() == "00000010");
 }
+
+TEST_CASE( "Bitarray: Test test()", "[bitarray]" ) {
+    BitArray b;
+    b.set(2);
+    b.set(5);
+
+    REQUIRE(b.test(2));
+    REQUIRE(b.test(5));
+    REQUIRE_FALSE(b.test(0));
+    REQUIRE(b.good());
+}
