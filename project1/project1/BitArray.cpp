@@ -1,6 +1,7 @@
 #include "BitArray.hpp"
 
-BitArray::BitArray() {
+// Default Constructor
+BitArray::BitArray(){
     m_size = 8;
     m_bits = new bool[8];
     m_good = true;
@@ -9,7 +10,8 @@ BitArray::BitArray() {
     }
 }
 
-BitArray::BitArray(intmax_t size) {
+// Integer Constructor
+BitArray::BitArray(intmax_t size){
     m_size = size;
     m_bits = nullptr;
     m_good = true;
@@ -26,7 +28,8 @@ BitArray::BitArray(intmax_t size) {
     }
 }
 
-BitArray::BitArray(const std::string & value) {
+// String Constructor
+BitArray::BitArray(const std::string & value){
     m_size = 0;
     m_bits = nullptr;
     m_good = true;
@@ -51,8 +54,48 @@ BitArray::BitArray(const std::string & value) {
     }
 }
 
-BitArray::~BitArray() {
+// Destructor
+BitArray::~BitArray(){
     delete[] m_bits;
 }
 
+
+// Added Methods
+
+// Size
+intmax_t BitArray::size() const{
+    return m_size;
+}
+
+// Good
+bool BitArray::good() const{
+    return m_good;
+}
+
+// Set
+void BitArray::set(intmax_t index){
+    if (index < 0 || index >= m_size){
+        m_good = false;
+        return;
+    }
+    m_bits[index] = true;
+}
+
+// Reset
+void BitArray::reset(intmax_t index){
+    if (index < 0 || index >= m_size){
+        m_good = false;
+        return;
+    }
+    m_bits[index] = false;
+}
+
+// Toggle
+void BitArray::toggle(intmax_t index){
+    if (index < 0 || index >= m_size){
+        m_good = false;
+        return;
+    }
+    m_bits[index] = !m_bits[index];
+}
 
