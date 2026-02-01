@@ -16,7 +16,9 @@ DynamicBag<T>::DynamicBag(const DynamicBag<T>& x) : items(nullptr), itemCount(x.
 }
     
 template<typename T>
-DynamicBag<T>::~DynamicBag(){}
+DynamicBag<T>::~DynamicBag() {
+  delete[] items;
+}
   
 template<typename T>
 DynamicBag<T>& DynamicBag<T>::operator=(DynamicBag<T> x)
