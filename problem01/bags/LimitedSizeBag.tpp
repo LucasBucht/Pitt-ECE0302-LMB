@@ -30,26 +30,37 @@ bool LimitedSizeBag<T>::remove(const T& item)
 template<typename T>
 bool LimitedSizeBag<T>::isEmpty() const
 {
-  return false;
+  return itemCount == 0;
 }
 
 template<typename T>
 std::size_t LimitedSizeBag<T>::getCurrentSize() const
 {
-  return 0;
+  return itemCount;
 }
 
 template<typename T>
 bool LimitedSizeBag<T>::contains(const T& item) const
 {  
+  for (std::size_t i = 0; i < itemCount; i++){
+    if (items[i] == item)
+      return true;
+  }
   return false;
 }
 
 template<typename T>
-void LimitedSizeBag<T>::clear(){}
+void LimitedSizeBag<T>::clear(){
+  itemCount = 0;
+}
 
 template<typename T>
 std::size_t LimitedSizeBag<T>::getFrequencyOf(const T & item) const
 {
-  return 0;
+  std::size_t count = 0;
+  for (std::size_t i = 0; i < itemCount; i++){
+    if (items[i] == item)
+      count++;
+  }
+  return count;
 };
