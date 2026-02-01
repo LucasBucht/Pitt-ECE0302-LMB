@@ -1,12 +1,17 @@
 #include "LimitedSizeBag.hpp"
 
 template<typename T>
-LimitedSizeBag<T>::LimitedSizeBag() {}
+LimitedSizeBag<T>::LimitedSizeBag() : itemCount(0) {}
   
 template<typename T>
 bool LimitedSizeBag<T>::add(const T& item)
 {
-  return false;
+  if (itemCount >= maxsize)
+    return false;
+
+  items[itemCount] = item;
+  itemCount++;
+  return true;
 }
 
 template<typename T>
