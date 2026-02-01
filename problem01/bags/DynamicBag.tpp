@@ -36,7 +36,18 @@ void DynamicBag<T>::swap(DynamicBag<T>& x){
 template<typename T>
 bool DynamicBag<T>::add(const T& item)
 {
-  return false;
+  T* newItems = new T[itemCount + 1];
+  for (std::size_t i = 0; i < itemCount; i++){
+    newItems[i] = items[i];
+  }
+
+  newItems[itemCount] = item;
+
+  delete[] items;
+  items = newItems;
+  itemCount++;
+  
+  return true;
 }
 
 template<typename T>
