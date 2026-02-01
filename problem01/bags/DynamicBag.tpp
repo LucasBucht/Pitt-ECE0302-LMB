@@ -6,7 +6,14 @@ DynamicBag<T>::DynamicBag() : items(nullptr), itemCount(0) {}
   
 
 template<typename T>
-DynamicBag<T>::DynamicBag(const DynamicBag<T>& x){}
+DynamicBag<T>::DynamicBag(const DynamicBag<T>& x) : items(nullptr), itemCount(x.itemCount) {
+  if (itemCount > 0){
+    items = new T[itemCount];
+    for (std::size_t i = 0; i < itemCount; i++;){
+      items[i] = x.items[i];
+    }
+  }
+}
     
 template<typename T>
 DynamicBag<T>::~DynamicBag(){}
