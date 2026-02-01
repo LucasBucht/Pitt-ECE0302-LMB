@@ -23,11 +23,15 @@ DynamicBag<T>::~DynamicBag() {
 template<typename T>
 DynamicBag<T>& DynamicBag<T>::operator=(DynamicBag<T> x)
 {  
+  swap(x);
   return *this;
 }
 
 template<typename T>
-void DynamicBag<T>::swap(DynamicBag<T>& x){}
+void DynamicBag<T>::swap(DynamicBag<T>& x){
+  std::swap(items, x.items);
+  std::swap(itemCount, x.itemCount);
+}
 
 template<typename T>
 bool DynamicBag<T>::add(const T& item)
