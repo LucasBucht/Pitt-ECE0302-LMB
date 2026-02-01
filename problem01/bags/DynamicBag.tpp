@@ -117,5 +117,10 @@ void DynamicBag<T>::clear()
 template<typename T>
 std::size_t DynamicBag<T>::getFrequencyOf(const T & item) const
 {
-  return 0;
+  std::size_t count = 0;
+  for (std::size_t i = 0; i < itemCount; i++){
+    if (items[i] == item)
+      count++
+  }
+  return count;
 };
