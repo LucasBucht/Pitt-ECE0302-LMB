@@ -53,7 +53,35 @@ bool DynamicBag<T>::add(const T& item)
 template<typename T>
 bool DynamicBag<T>::remove(const T& item)
 {
-  return false;
+  std::size_t index = itemCount;
+  for (std::size_t i = 0; i < itemCount; i++){
+    if (items[i] == item){
+      index = i;
+      break;
+    }
+  }
+
+  if (index == itemCount)
+    return false;
+
+  if (itemCount == 1){
+    delete[] items;
+    items = nullptr;
+    itemCount = 0;
+    return true;
+  }
+
+  T* newItems = new T[itemCount - 1];
+  for (std::size_t i = 0, j = 0; i < itemCount; i++){
+    if (i != index)
+      newItems[j++] = items[i];
+  }
+
+  delete[] items;
+  items = newItems;
+  itemCount--;
+
+  return true;
 }
 
 template<typename T>
