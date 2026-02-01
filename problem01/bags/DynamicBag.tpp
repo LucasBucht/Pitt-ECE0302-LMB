@@ -9,7 +9,7 @@ template<typename T>
 DynamicBag<T>::DynamicBag(const DynamicBag<T>& x) : items(nullptr), itemCount(x.itemCount) {
   if (itemCount > 0){
     items = new T[itemCount];
-    for (std::size_t i = 0; i < itemCount; i++;){
+    for (std::size_t i = 0; i < itemCount; i++){
       items[i] = x.items[i];
     }
   }
@@ -99,7 +99,7 @@ std::size_t DynamicBag<T>::getCurrentSize() const
 template<typename T>
 bool DynamicBag<T>::contains(const T& item) const
 {  
-  for (std::size_t i = 0; i < itemCount; i++;){
+  for (std::size_t i = 0; i < itemCount; i++){
     if (items[i] == item)
       return true;
   }
@@ -118,7 +118,7 @@ template<typename T>
 std::size_t DynamicBag<T>::getFrequencyOf(const T & item) const
 {
   std::size_t count = 0;
-  for (std::size_t i = 0; i < itemCount; i++;){
+  for (std::size_t i = 0; i < itemCount; i++){
     if (items[i] == item)
       count++;
   }
