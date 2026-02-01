@@ -2,7 +2,7 @@
 #include <utility>
 
 template<typename T>
-DynamicBag<T>::DynamicBag() {}
+DynamicBag<T>::DynamicBag() : items(nullptr), itemCount(0) {}
   
 
 template<typename T>
