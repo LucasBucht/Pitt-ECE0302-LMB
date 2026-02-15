@@ -122,3 +122,14 @@ void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 
   getNode(position)->setItem(newValue);
 }
+
+template <typename T>
+Node<T>* LinkedList<T>::getNode(std::size_t position) const
+{
+    Node<T>* current = head;
+    for (std::size_t i = 0; i < position; i++)
+    {
+        current = current->getNext();
+    }
+    return current;
+}

@@ -35,10 +35,10 @@ class LinkedList: public AbstractList<T>
     void setEntry(std::size_t position, const T& newValue);
 
   private:
-
     Node<T>* head;
     std::size_t length;
     Node<T>* getNode(std::size_t position) const;
+
   
 };
 
