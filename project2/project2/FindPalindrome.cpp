@@ -100,7 +100,12 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & wordVector1,
 
 bool FindPalindrome::add(const std::string & newWord)
 {
-	// TODO 
+	// Return false is character isn't in the alphabet
+	for (std::size_t i = 0; i < newWord.size(); i++){
+		if (!isalpha(newWord[i])){
+			return false;
+		}
+	} 
 	return false;
 }
 
