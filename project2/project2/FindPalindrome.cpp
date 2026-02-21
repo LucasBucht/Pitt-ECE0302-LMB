@@ -20,7 +20,8 @@ static void convertToLowerCase(std::string & value)
 void FindPalindrome::recursiveFindPalindromes(std::vector<std::string>
         candidateSentence, std::vector<std::string> remainingWords)
 {
-	if(remainingWords.empty()){
+	// No words left
+	if (remainingWords.empty()){
 		std::string fullSentance;
 		for (std::size_t i = 0; i < candidateSentence.size(); i++){
 			fullSentance += candidateSentence[i];
@@ -30,6 +31,22 @@ void FindPalindrome::recursiveFindPalindromes(std::vector<std::string>
 		}
 	}
 	return;
+
+
+	// Words left
+	for (int j = 0; j < (int)remainingWords.size(); j++){
+		std::vector<std::string> newCandidate = candidateSentence;
+		newCandidate.push_back(remainingWords[j]);
+
+		std::vector<std::string> newRemaining;
+		for(int k = 0; k < (int)remainingWords.size(); k++){
+			if (k != j){
+				newRemaining.push_back(remainingWords[k]);
+			}
+		}
+
+		recursiveFindPalindromes(newCandidate, newRemaining);
+	}
 }
 
 bool FindPalindrome::isPalindrome(std::string testString) const
