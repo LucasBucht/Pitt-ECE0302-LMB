@@ -87,7 +87,7 @@ void FindPalindrome::clear()
 
 bool FindPalindrome::cutTest1(const std::vector<std::string> & wordVector)
 {
-	// TODO 
+	
 	return false;
 }
 
@@ -124,6 +124,7 @@ bool FindPalindrome::add(const std::string & newWord)
 	}
 
 	words_.push_back(newWord);
+	recursiveFindPalindromes({}, words_);
 	return true;
 }
 
