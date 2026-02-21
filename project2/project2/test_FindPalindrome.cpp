@@ -32,3 +32,11 @@ TEST_CASE("add rejects duplicate word (case-insensitive)", "[add]") {
 	REQUIRE_FALSE(c.add("Fish"));
 	REQUIRE_FALSE(c.add("FISH"));
 }
+
+TEST_CASE("add accepts valid unique words", "[add]") {
+	FindPalindrome d;
+	REQUIRE(d.add("Never"));
+	REQUIRE(d.add("Odd"));
+	REQUIRE(d.add("or"));
+	REQUIRE(d.add("Even"));
+}
