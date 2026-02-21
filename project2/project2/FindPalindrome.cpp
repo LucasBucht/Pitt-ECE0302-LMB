@@ -32,15 +32,13 @@ void FindPalindrome::recursiveFindPalindromes(std::vector<std::string>
 		return;
 	}
 	
-
-
 	// Words left
-	for (int j = 0; j < (int)remainingWords.size(); j++){
+	for (std::size_t j = 0; j < (int)remainingWords.size(); j++){
 		std::vector<std::string> newCandidate = candidateSentence;
 		newCandidate.push_back(remainingWords[j]);
 
 		std::vector<std::string> newRemaining;
-		for(int k = 0; k < (int)remainingWords.size(); k++){
+		for(std::size_t k = 0; k < (int)remainingWords.size(); k++){
 			if (k != j){
 				newRemaining.push_back(remainingWords[k]);
 			}
@@ -144,7 +142,19 @@ bool FindPalindrome::add(const std::vector<std::string> & wordVector)
 			}
     	}
 	}
-	
+
+	// Return false if words are not unique
+	for (std::size_t i = 0; i < (int)wordVector.size(); i++){
+		std::string lowerI = wordVector[i];
+		convertToLowerCase(lowerI);
+		for (std::size_t j = i + 1; j < (int)wordVector.size(); j++){
+			std::string lowerJ = wordVector[j];
+			convertToLowerCase(lowerJ);
+			if (lowerI == lowerJ){
+				return false;
+			}
+		}
+	}
 
 
 

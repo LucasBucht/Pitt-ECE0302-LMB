@@ -49,6 +49,14 @@ TEST_CASE("add(vector) rejects if any word is invalid", "[add]") {
 	REQUIRE(a.number() == 0);
 }
 
+TEST_CASE("add(vector) rejects duplicates inside the vector", "[add]") {
+	FindPalindrome b;
+	std::vector<std::string> v = {"abc", "ABC"};
+	REQUIRE_FALSE(b.add(v));
+	REQUIRE(b.number() == 0);
+}
+
+
 
 
 // Testing Clear Function
