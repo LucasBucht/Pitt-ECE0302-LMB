@@ -29,8 +29,9 @@ void FindPalindrome::recursiveFindPalindromes(std::vector<std::string>
 		if (isPalindrome(fullSentence)){
 			palindromes_.push_back(candidateSentence);
 		}
+		return;
 	}
-	return;
+	
 
 
 	// Words left
