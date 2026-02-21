@@ -64,6 +64,11 @@ TEST_CASE("add(vector) rejects duplicates with existing words", "[add]") {
 	REQUIRE(c.number() == 0);
 }
 
+TEST_CASE("add(vector) accepts valid unique words", "[add]") {
+	FindPalindrome d;
+	std::vector<std::string> v = {"Never", "Odd", "or", "Even"};
+	REQUIRE(d.add(v));
+}
 
 // Testing Clear Function
 TEST_CASE("clear resets palindromes", "[clear]") {

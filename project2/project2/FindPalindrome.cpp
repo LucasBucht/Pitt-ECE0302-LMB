@@ -169,8 +169,12 @@ bool FindPalindrome::add(const std::vector<std::string> & wordVector)
     	}
 	}
 
+	for (std::size_t i = 0; i < wordVector.size(); i++){
+    	words_.push_back(wordVector[i]);
+	}
 
-
+	palindromes_.clear();
+	recursiveFindPalindromes({}, words_);
 	return true;
 }
 
