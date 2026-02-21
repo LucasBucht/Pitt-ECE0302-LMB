@@ -31,6 +31,10 @@ void FindPalindrome::recursiveFindPalindromes(std::vector<std::string>
 		}
 		return;
 	}
+	// CutTest2 Implementation: if candidate and remaining don't satisfy property 2, kill
+	if (!candidateSentence.empty() && !cutTest2(candidateSentence, remainingWords))
+		return;
+
 	
 	// Words left
 	for (std::size_t j = 0; j < (int)remainingWords.size(); j++){

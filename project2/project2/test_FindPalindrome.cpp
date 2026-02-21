@@ -135,3 +135,30 @@ TEST_CASE("cutTest2 is symmetric", "[cutTest2]") {
 	FindPalindrome b;
 	REQUIRE(b.cutTest2({"aab"}, {"ab"}) == b.cutTest2({"ab"}, {"aab"}));
 }
+
+// General Palindrome Tests
+TEST_CASE("Never Odd or Even is a palindrome sentence", "[palindrome]") {
+	FindPalindrome a;
+	std::vector<std::string> v = {"Never", "Odd", "or", "Even"};
+	REQUIRE(a.add(v));
+	REQUIRE(a.number() > 0);
+}
+
+TEST_CASE("Single word palindrome", "[palindrome]") {
+	FindPalindrome b;
+	REQUIRE(b.add("kayak"));
+	REQUIRE(b.number() == 1);
+}
+
+TEST_CASE("Single word not palindrome", "[palindrome]") {
+	FindPalindrome c;
+	REQUIRE(c.add("hello"));
+	REQUIRE(c.number() == 0);
+}
+
+TEST_CASE("Words that don't form palindrome return 0", "[palindrome]") {
+	FindPalindrome d;
+	REQUIRE(d.add("ab"));
+	REQUIRE(d.add("cd"));
+	REQUIRE(d.number() == 0);
+}
