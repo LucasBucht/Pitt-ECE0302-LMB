@@ -108,8 +108,47 @@ bool FindPalindrome::cutTest1(const std::vector<std::string> & wordVector)
 bool FindPalindrome::cutTest2(const std::vector<std::string> & wordVector1,
                               const std::vector<std::string> & wordVector2)
 {
-	// TODO 
-	return false;
+	int counts1[26] = {0};
+	for (std::size_t i = 0; i < wordVector1.size(); i++){
+    	for (std::size_t j = 0; j < wordVector1[i].size(); j++){
+        	counts1[tolower(wordVector1[i][j]) - 'a']++;
+		}
+	}
+
+	int counts2[26] = {0};
+	for (std::size_t i = 0; i < wordVector2.size(); i++){
+    	for (std::size_t j = 0; j < wordVector2[i].size(); j++){
+        	counts2[tolower(wordVector2[i][j]) - 'a']++;
+		}
+	}
+
+	// Check for fewer total characters
+	std::size_t total1 = 0, total2 = 0;
+	for (std::size_t i = 0; i < 26; i++){
+		total1 += counts1[i];
+		total2 += counts2[i];
+	}
+
+	// Set smaller and larger substrings
+	const int* smaller;
+	const int* larger;
+
+	if (total1 <= total2){
+    	smaller = counts1;
+    	larger  = counts2;
+	} else {
+    	smaller = counts2;
+    	larger  = counts1;
+	}
+
+	// Every char in the smaller must appear as often in the larger
+	for (int i = 0; i < 26; i++){
+		if (smaller[i] > larger[i]){
+			return false;
+		}
+	}
+		
+	return true;
 }
 
 bool FindPalindrome::add(const std::string & newWord)
@@ -200,4 +239,3 @@ std::vector< std::vector<std::string> > FindPalindrome::toVector() const
 {
 	return palindromes_;
 }
-

@@ -15,7 +15,6 @@ TEST_CASE("Test recursion", "[FindPalindrome]"){
 
 /* Your test cases here */
 
-
 // Testing Add Function
 TEST_CASE("add rejects non-alpha string", "[add]") {
 	FindPalindrome a;
@@ -123,4 +122,16 @@ TEST_CASE("cutTest1 works across multiple words", "[cutTest1]") {
 	REQUIRE(b.cutTest1({"abc", "ba"}));
 	REQUIRE(b.cutTest1({"abc", "bc"}));
 	REQUIRE_FALSE(b.cutTest1({"ab", "cd"}));
+}
+
+// Testing CutTest2 Function
+TEST_CASE("cutTest2 smaller chars must all appear in larger", "[cutTest2]") {
+	FindPalindrome a;
+	REQUIRE(a.cutTest2({"ab"}, {"aab"}));
+	REQUIRE_FALSE(a.cutTest2({"aac"}, {"ab"}));
+}
+
+TEST_CASE("cutTest2 is symmetric", "[cutTest2]") {
+	FindPalindrome b;
+	REQUIRE(b.cutTest2({"aab"}, {"ab"}) == b.cutTest2({"ab"}, {"aab"}));
 }
