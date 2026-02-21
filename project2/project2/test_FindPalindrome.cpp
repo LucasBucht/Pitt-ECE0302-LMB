@@ -7,7 +7,6 @@
 
 TEST_CASE("Test recursion", "[FindPalindrome]"){
 	FindPalindrome b;
-
 	REQUIRE(b.add("a"));
 	REQUIRE(b.add("AA"));
 	REQUIRE(b.add("AaA"));

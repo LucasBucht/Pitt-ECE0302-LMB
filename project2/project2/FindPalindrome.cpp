@@ -22,11 +22,11 @@ void FindPalindrome::recursiveFindPalindromes(std::vector<std::string>
 {
 	// No words left
 	if (remainingWords.empty()){
-		std::string fullSentance;
+		std::string fullSentence;
 		for (std::size_t i = 0; i < candidateSentence.size(); i++){
-			fullSentance += candidateSentence[i];
+			fullSentence += candidateSentence[i];
 		}
-		if (isPalindrome(fullSentance)){
+		if (isPalindrome(fullSentence)){
 			palindromes_.push_back(candidateSentence);
 		}
 	}
@@ -100,16 +100,16 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & wordVector1,
 
 bool FindPalindrome::add(const std::string & newWord)
 {
+	// Return false if string is empty
+	if(newWord.empty()){
+		return false;
+	}
+	
 	// Return false if character isn't in the alphabet
 	for (std::size_t i = 0; i < newWord.size(); i++){
 		if (!isalpha(newWord[i])){
 			return false;
 		}
-	}
-	
-	// Return false if string is empty
-	if(newWord.empty()){
-		return false;
 	}
 
 	// Return false if string is not unique
