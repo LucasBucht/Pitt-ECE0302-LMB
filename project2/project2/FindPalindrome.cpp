@@ -100,7 +100,7 @@ bool FindPalindrome::cutTest2(const std::vector<std::string> & wordVector1,
 
 bool FindPalindrome::add(const std::string & newWord)
 {
-	// Return false is character isn't in the alphabet
+	// Return false if character isn't in the alphabet
 	for (std::size_t i = 0; i < newWord.size(); i++){
 		if (!isalpha(newWord[i])){
 			return false;
@@ -112,9 +112,18 @@ bool FindPalindrome::add(const std::string & newWord)
 		return false;
 	}
 
+	// Return false if string is not unique
+	std::string lowerNew = newWord;
+	convertToLowerCase(lowerNew);
+	for (std::size_t i = 0; i < words_.size(); i++){
+    	std::string lowerW = words_[i];
+    	convertToLowerCase(lowerW);
+    	if (lowerW == lowerNew){
+			return false;
+		}
+	}
 
-
-	
+	words_.push_back(newWord);
 	return true;
 }
 

@@ -26,3 +26,10 @@ TEST_CASE("add rejects empty string", "[add]") {
 	FindPalindrome b;
 	REQUIRE_FALSE(b.add(""));
 }
+
+TEST_CASE("add rejects duplicate word (case-insensitive)", "[add]") {
+	FindPalindrome c;
+	REQUIRE(c.add("fish"));
+	REQUIRE_FALSE(c.add("Fish"));
+	REQUIRE_FALSE(c.add("FISH"));
+}
