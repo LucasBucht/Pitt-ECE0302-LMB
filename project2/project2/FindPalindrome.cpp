@@ -83,7 +83,7 @@ int FindPalindrome::number() const
 
 void FindPalindrome::clear()
 {
-	// TODO 
+	// TODO
 }
 
 bool FindPalindrome::cutTest1(const std::vector<std::string> & wordVector)
@@ -125,6 +125,7 @@ bool FindPalindrome::add(const std::string & newWord)
 	}
 
 	words_.push_back(newWord);
+	palindromes_.clear();
 	recursiveFindPalindromes({}, words_);
 	return true;
 }
