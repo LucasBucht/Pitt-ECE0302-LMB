@@ -180,7 +180,6 @@ bool FindPalindrome::add(const std::vector<std::string> & wordVector)
 
 std::vector< std::vector<std::string> > FindPalindrome::toVector() const
 {
-	// TODO
-	return std::vector< std::vector<std::string> >();
+	return palindromes_;
 }
 

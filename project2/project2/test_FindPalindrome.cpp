@@ -15,6 +15,7 @@ TEST_CASE("Test recursion", "[FindPalindrome]"){
 
 /* Your test cases here */
 
+
 // Testing Add Function
 TEST_CASE("add rejects non-alpha string", "[add]") {
 	FindPalindrome a;
@@ -89,4 +90,21 @@ TEST_CASE("words can be re-added after clear", "[clear]") {
 	b.clear();
 	REQUIRE(b.number() == 0);
 	REQUIRE(b.add("b"));
+}
+
+// Testing toVector Function
+TEST_CASE("toVector returns correct palindrome sentences", "[toVector]") {
+	FindPalindrome a;
+	a.add("a");
+	a.add("AA");
+	a.add("AaA");
+	auto v = a.toVector();
+	REQUIRE(v.size() == 6);
+}
+
+TEST_CASE("toVector is empty after clear", "[toVector]") {
+	FindPalindrome b;
+	b.add("kayak");
+	b.clear();
+	REQUIRE(b.toVector().empty());
 }
