@@ -40,3 +40,24 @@ TEST_CASE("add accepts valid unique words", "[add]") {
 	REQUIRE(d.add("or"));
 	REQUIRE(d.add("Even"));
 }
+
+// Testing Clear Function
+TEST_CASE("clear resets palindromes", "[clear]") {
+	FindPalindrome a;
+	a.add("a");
+	a.add("AA");
+	a.add("AaA");
+	REQUIRE(a.number() == 6);
+	a.clear();
+	REQUIRE(a.number() == 0);
+}
+
+TEST_CASE("words can be re-added after clear", "[clear]") {
+	FindPalindrome b;
+	b.add("b");
+	b.add("BB");
+	b.add("BbB");
+	b.clear();
+	REQUIRE(b.number() == 0);
+	REQUIRE(b.add("b"));
+}

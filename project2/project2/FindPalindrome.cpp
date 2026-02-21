@@ -83,7 +83,8 @@ int FindPalindrome::number() const
 
 void FindPalindrome::clear()
 {
-	// TODO
+	words_.clear();
+	palindromes_.clear();
 }
 
 bool FindPalindrome::cutTest1(const std::vector<std::string> & wordVector)
