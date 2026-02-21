@@ -8,6 +8,10 @@ class FindPalindrome{
 
 private:
 	/* Define additional private members here as needed */ 
+
+	// All sentance palindromes found for the current word list are stored here 
+	std::vector< std::vector<std::string> > palindromes_;
+
 	
 
 	/** Find and test all possible combinations of the words that have been
