@@ -52,8 +52,7 @@ FindPalindrome::~FindPalindrome()
 
 int FindPalindrome::number() const
 {
-	// TODO 
-	return 0;
+	return (int)palindromes_.size();
 }
 
 void FindPalindrome::clear()
