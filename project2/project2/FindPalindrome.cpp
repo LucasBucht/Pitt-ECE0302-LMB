@@ -133,8 +133,23 @@ bool FindPalindrome::add(const std::string & newWord)
 
 bool FindPalindrome::add(const std::vector<std::string> & wordVector)
 {
-	// TODO 
-	return false;
+	// Return false if vector is empty or character isn't in the alphabet
+	for (std::size_t i = 0; i < wordVector.size(); i++){
+   		if (wordVector[i].empty()){
+			return false;
+		}
+    	for (std::size_t j = 0; j < wordVector[i].size(); j++){
+        	if (!isalpha(wordVector[i][j])){
+				return false;
+			}
+    	}
+	}
+	
+
+
+
+
+	return true;
 }
 
 std::vector< std::vector<std::string> > FindPalindrome::toVector() const
