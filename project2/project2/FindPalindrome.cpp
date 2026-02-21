@@ -106,7 +106,7 @@ bool FindPalindrome::add(const std::string & newWord)
 			return false;
 		}
 	} 
-	return false;
+	return true;
 }
 
 bool FindPalindrome::add(const std::vector<std::string> & wordVector)
