@@ -116,3 +116,11 @@ TEST_CASE("cutTest1 returns true when at most one odd count character", "[cutTes
 	REQUIRE_FALSE(a.cutTest1({"ab"}));
 	REQUIRE(a.cutTest1({"aa"}));
 }
+
+TEST_CASE("cutTest1 works across multiple words", "[cutTest1]") {
+	FindPalindrome b;
+	REQUIRE(b.cutTest1({"ab", "ba"}));
+	REQUIRE(b.cutTest1({"abc", "ba"}));
+	REQUIRE(b.cutTest1({"abc", "bc"}));
+	REQUIRE_FALSE(b.cutTest1({"ab", "cd"}));
+}
