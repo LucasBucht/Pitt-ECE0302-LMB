@@ -101,7 +101,7 @@ bool FindPalindrome::cutTest1(const std::vector<std::string> & wordVector)
 			oddCount++;
 		}
 	}
-	
+
 	return (oddCount <= 1);
 }
 
@@ -139,7 +139,9 @@ bool FindPalindrome::add(const std::string & newWord)
 
 	words_.push_back(newWord);
 	palindromes_.clear();
-	recursiveFindPalindromes({}, words_);
+	if (cutTest1(words_)){
+		recursiveFindPalindromes({}, words_);
+	}
 	return true;
 }
 
@@ -188,7 +190,9 @@ bool FindPalindrome::add(const std::vector<std::string> & wordVector)
 	}
 
 	palindromes_.clear();
-	recursiveFindPalindromes({}, words_);
+	if (cutTest1(words_)){
+		recursiveFindPalindromes({}, words_);
+	}
 	return true;
 }
 
