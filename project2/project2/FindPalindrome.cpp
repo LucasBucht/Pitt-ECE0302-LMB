@@ -66,12 +66,12 @@ bool FindPalindrome::isPalindrome(std::string testString) const
 
 FindPalindrome::FindPalindrome()
 {
-	// Default Constructor
+	// Nothing to default construct
 }
 
 FindPalindrome::~FindPalindrome()
 {
-	// Destructor
+	// Nothing to destroy
 }
 
 int FindPalindrome::number() const
