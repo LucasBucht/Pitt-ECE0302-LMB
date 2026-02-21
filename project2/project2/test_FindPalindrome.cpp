@@ -108,3 +108,11 @@ TEST_CASE("toVector is empty after clear", "[toVector]") {
 	b.clear();
 	REQUIRE(b.toVector().empty());
 }
+
+// Testing CutTest1 Function
+TEST_CASE("cutTest1 returns true when at most one odd count character", "[cutTest1]") {
+	FindPalindrome b;
+	REQUIRE(b.cutTest1({"aba"}));
+	REQUIRE_FALSE(b.cutTest1({"ab"}));
+	REQUIRE(b.cutTest1({"aa"}));
+}

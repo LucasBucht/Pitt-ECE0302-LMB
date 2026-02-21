@@ -87,8 +87,22 @@ void FindPalindrome::clear()
 
 bool FindPalindrome::cutTest1(const std::vector<std::string> & wordVector)
 {
+	int counts[26] = {0};
+	for (std::size_t i = 0; i < wordVector.size(); i++){
+    	for (std::size_t j = 0; j < wordVector[i].size(); j++){
+        	counts[tolower(wordVector[i][j]) - 'a']++;
+		}
+	}
+
+	// Check for odd counts
+	int oddCount = 0;
+	for (std::size_t i = 0; i < 26; i++){
+		if (counts[i] % 2 != 0){
+			oddCount++;
+		}
+	}
 	
-	return false;
+	return (oddCount <= 1);
 }
 
 bool FindPalindrome::cutTest2(const std::vector<std::string> & wordVector1,
