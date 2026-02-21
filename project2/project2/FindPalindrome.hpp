@@ -12,7 +12,8 @@ private:
 	// All sentance palindromes found for the current word list are stored here 
 	std::vector< std::vector<std::string> > palindromes_;
 
-	
+	// All words currently added, with their original case
+	std::vector<std::string> words_;
 
 	/** Find and test all possible combinations of the words that have been
 	 * added to the FindPalindrome instance. Must call itself recursively. 
