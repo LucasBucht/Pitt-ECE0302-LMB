@@ -105,7 +105,16 @@ bool FindPalindrome::add(const std::string & newWord)
 		if (!isalpha(newWord[i])){
 			return false;
 		}
-	} 
+	}
+	
+	// Return false if string is empty
+	if(newWord.empty()){
+		return false;
+	}
+
+
+
+	
 	return true;
 }
 
