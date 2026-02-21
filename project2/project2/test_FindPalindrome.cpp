@@ -56,7 +56,13 @@ TEST_CASE("add(vector) rejects duplicates inside the vector", "[add]") {
 	REQUIRE(b.number() == 0);
 }
 
-
+TEST_CASE("add(vector) rejects duplicates with existing words", "[add]") {
+	FindPalindrome c;
+	REQUIRE(c.add("abc"));
+	std::vector<std::string> v = {"def", "ABC"};
+	REQUIRE_FALSE(c.add(v));
+	REQUIRE(c.number() == 0);
+}
 
 
 // Testing Clear Function

@@ -143,7 +143,7 @@ bool FindPalindrome::add(const std::vector<std::string> & wordVector)
     	}
 	}
 
-	// Return false if words are not unique
+	// Return false if words inside vector are duplicates
 	for (std::size_t i = 0; i < (int)wordVector.size(); i++){
 		std::string lowerI = wordVector[i];
 		convertToLowerCase(lowerI);
@@ -156,6 +156,18 @@ bool FindPalindrome::add(const std::vector<std::string> & wordVector)
 		}
 	}
 
+	// Return false if words inside vector already exist outside vector
+	for (std::size_t i = 0; i < wordVector.size(); i++){
+    	std::string lowerNew = wordVector[i];
+    	convertToLowerCase(lowerNew);
+    	for (std::size_t j = 0; j < words_.size(); j++){
+        	std::string lowerW = words_[j];
+        	convertToLowerCase(lowerW);
+        	if (lowerW == lowerNew){
+				return false;
+			}     	
+    	}
+	}
 
 
 
