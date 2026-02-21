@@ -16,3 +16,8 @@ TEST_CASE("Test recursion", "[FindPalindrome]"){
 
 /* Your test cases here */
 
+// Testing Add Function
+TEST_CASE("add rejects non-alpha string", "[add]") {
+	FindPalindrome b;
+	REQUIRE_FALSE(b.add("&&&"));
+}
