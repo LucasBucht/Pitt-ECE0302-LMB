@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "sorting",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "submission::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-submission-Debug-11b25fa2eafea6428122.json",
+					"name" : "submission",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-sort-Debug-c885be576dfa4a0f6ec9.json",
+					"name" : "test-sort",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/knb/Library/CloudStorage/OneDrive-UniversityofPittsburgh/_BoxMigration/Personal/Teaching/ECE0302/ece0302-knb/starter/programming_problems/problem04/sorting/build",
+		"source" : "/Users/knb/Library/CloudStorage/OneDrive-UniversityofPittsburgh/_BoxMigration/Personal/Teaching/ECE0302/ece0302-knb/starter/programming_problems/problem04/sorting"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
