@@ -6,7 +6,11 @@
 template<typename T> 
 inline void quick_sort(List<T>& list, int first, int last)
 {
-	// TODO
+	if (first >= last) 
+		return;
+	int pivotIndex = partition(list, first, last);
+  	quick_sort(list, first, pivotIndex - 1);
+	quick_sort(list, pivotIndex + 1, last);
 }
 
 /** Partition a sub-list by moving items relative to the pivot.
@@ -18,9 +22,16 @@ inline void quick_sort(List<T>& list, int first, int last)
  * @return index of the pivot item after partitioning */
 template <typename T>
 inline int partition(List<T>& list, int first, int last) {
-	// TODO
-
-	return 0;
+  T pivot = list.getEntry(first);
+  int index = first;
+  for (int i = first + 1; i <= last; i++) {
+    if (list.getEntry(i) < pivot) {
+      index++;
+      list.moveEntry(i, index);
+    }
+  }
+  list.moveEntry(first, index);
+  return index;
 }
 
 #endif
