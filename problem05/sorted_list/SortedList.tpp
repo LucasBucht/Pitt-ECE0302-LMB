@@ -10,7 +10,9 @@ SortedList<T>::SortedList()
 template <typename T>
 SortedList<T>::SortedList(List<T> unsorted_list) 
 {
-  // TODO
+  for (std::size_t i = 0; i < unsorted_list.getLength(); i++){
+    insert(unsorted_list.getEntry(i));
+  }
 }
 
 template <typename T>
@@ -47,19 +49,27 @@ std::size_t SortedList<T>::getLength() const noexcept
 template <typename T>
 void SortedList<T>::insert(const T& item)
 {
-  // TODO
+  std::size_t pos = 0;
+  std::size_t len = List<T>::getLength();
+  while (pos < len && List<T>::getEntry(pos) <= item){
+    pos++;
+  }
+
+  List<T>::insert(pos, item);
+
 }
 
 template <typename T>
 void SortedList<T>::remove(const T& item)
 {  
-  // TODO
+  std::size_t pos = getPosition(item);
+  List<T>::remove(pos);
 }
 
 template <typename T>
 void SortedList<T>::removeAt(std::size_t position)
 {  
-  // TODO
+  List<T>::remove(position);
 }
 
 template <typename T>
@@ -77,6 +87,15 @@ T SortedList<T>::getEntry(std::size_t position) const
 template <typename T>
 std::size_t SortedList<T>::getPosition(const T& item)
 {
-  // TODO
-  return 0;
+  std::size_t len = List<T>::getLength();
+  for (std::size_t i = 0; i < len; i++){
+    T cur = List<T>::getLength();
+    if (cur == item){
+      return i;
+    }
+    if (cur > item){
+      break;
+    }
+  }
+  throw std::invalid_argument("getPosition item not found");
 }
