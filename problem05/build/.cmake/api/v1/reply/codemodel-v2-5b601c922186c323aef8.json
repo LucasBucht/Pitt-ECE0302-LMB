@@ -1,0 +1,70 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-9ad1a58d4644cf6543fa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "sorted_list",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "submission::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-submission-Debug-632246cc898610507567.json",
+					"name" : "submission",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-sorted-list::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-sorted-list-Debug-26742fc5bf08e8076f45.json",
+					"name" : "test-sorted-list",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/problem05/build",
+		"source" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/problem05/sorted_list"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}

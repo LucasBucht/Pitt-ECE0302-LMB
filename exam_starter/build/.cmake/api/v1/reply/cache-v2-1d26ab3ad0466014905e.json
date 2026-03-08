@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/problem02/build"
+			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/exam_starter/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -155,10 +155,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "CXX compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/g++"
 		},
 		{
@@ -283,10 +283,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/gcc"
 		},
 		{
@@ -555,7 +555,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/problem02/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/exam_starter/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -615,7 +615,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/problem02/lists"
+			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/exam_starter/exam_starter"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -883,7 +883,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "lists"
+			"value" : "exam"
 		},
 		{
 			"name" : "CMAKE_PROJECT_SPDX_LICENSE",
@@ -1194,7 +1194,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "lists_BINARY_DIR",
+			"name" : "exam_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1203,10 +1203,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/problem02/build"
+			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/exam_starter/build"
 		},
 		{
-			"name" : "lists_IS_TOP_LEVEL",
+			"name" : "exam_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1218,7 +1218,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "lists_SOURCE_DIR",
+			"name" : "exam_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -1227,7 +1227,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/problem02/lists"
+			"value" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/exam_starter/exam_starter"
 		}
 	],
 	"kind" : "cache",

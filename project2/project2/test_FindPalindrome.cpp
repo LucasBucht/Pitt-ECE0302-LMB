@@ -162,3 +162,12 @@ TEST_CASE("Words that don't form palindrome return 0", "[palindrome]") {
 	REQUIRE(d.add("cd"));
 	REQUIRE(d.number() == 0);
 }
+
+// Checkoff Test Case
+TEST_CASE("Cut Test 2 Checkoff" , "[cut test 2]"){
+	FindPalindrome checkoff;
+	// bb, w, aaa
+	// b, aa
+	REQUIRE(checkoff.cutTest2({"bb", "w", "aaa"}, {"b", "aa"}));
+
+}
