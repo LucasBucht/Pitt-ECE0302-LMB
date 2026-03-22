@@ -222,3 +222,22 @@ TEST_CASE("Stack: isEmpty is false after push, true after all pops", "[Stack]")
     s.pop();
     REQUIRE(s.isEmpty() == true);
 }
+
+TEST_CASE("Stack: clear empties a full stack", "[Stack]")
+{
+    Stack<int> s;
+    for (int i = 0; i < 5; i++) {
+		s.push(i);
+	} 
+    REQUIRE(s.isEmpty() == false);
+    s.clear();
+    REQUIRE(s.isEmpty() == true);
+    REQUIRE(s.size() == 0);
+}
+
+TEST_CASE("Stack: clear on already empty stack is safe", "[Stack]")
+{
+    Stack<int> s;
+    REQUIRE_NOTHROW(s.clear());
+    REQUIRE(s.isEmpty() == true);
+}
