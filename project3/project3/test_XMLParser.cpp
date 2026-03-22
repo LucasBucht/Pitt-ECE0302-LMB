@@ -175,6 +175,7 @@ TEST_CASE("XMLParser: Test XMLParser parse, contains and frequency", "[XMLParser
 */
 /* Your test cases here */
 
+
 // Stack Tests
 TEST_CASE("Stack: push returns true and increases size", "[Stack]")
 {
@@ -262,6 +263,7 @@ TEST_CASE("XMLParser Helper: checking tag name validity", "[XMLParser][helpers]"
 	}
 }
 
+
 // XMLParser tokenizeInputString Tests
 
 TEST_CASE("XMLParser: checking invalid tokenize cases", "[XMLParser]")
@@ -273,3 +275,39 @@ TEST_CASE("XMLParser: checking invalid tokenize cases", "[XMLParser]")
 	REQUIRE_FALSE(p.tokenizeInputString("<start <end>>"));
 	REQUIRE_FALSE(p.tokenizeInputString("<test>invalid</test/>"));
 }
+
+
+// XMLParser returnTokenizedInput Tests
+
+TEST_CASE("XMLParser: tag name correctly extracted when attributes present", "[XMLParser][helpers]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<note src='x'></note>"));
+    auto tokens = p.returnTokenizedInput();
+    REQUIRE(tokens.size() == 2);
+    REQUIRE(tokens[0].tokenString == "note");
+	REQUIRE(tokens[1].tokenString == "note");
+}
+
+TEST_CASE("XMLParser: empty tag name extracted correctly before slash", "[XMLParser][helpers]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<self/>"));
+    auto tokens = p.returnTokenizedInput();
+    REQUIRE(tokens.size() == 1);
+    REQUIRE(tokens[0].tokenType == EMPTY_TAG);
+    REQUIRE(tokens[0].tokenString == "self");
+}
+
+TEST_CASE("XMLParser: name extracted correctly for end tag", "[XMLParser][helpers]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<root></root>"));
+    auto tokens = p.returnTokenizedInput();
+    REQUIRE(tokens.size() == 2);
+    REQUIRE(tokens[0].tokenType == START_TAG);
+    REQUIRE(tokens[0].tokenString == "root");
+    REQUIRE(tokens[1].tokenType == END_TAG);
+    REQUIRE(tokens[1].tokenString == "root");
+}
+
