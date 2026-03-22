@@ -261,3 +261,15 @@ TEST_CASE("XMLParser Helper: checking tag name validity", "[XMLParser][helpers]"
 		REQUIRE_FALSE(p.tokenizeInputString("<.tag></.tag>"));
 	}
 }
+
+// XMLParser tokenizeInputString Tests
+
+TEST_CASE("XMLParser: checking invalid tokenize cases", "[XMLParser]")
+{
+    XMLParser p;
+    REQUIRE_FALSE(p.tokenizeInputString("<start"));
+	REQUIRE_FALSE(p.tokenizeInputString("<>"));
+	REQUIRE_FALSE(p.tokenizeInputString("< /end>"));
+	REQUIRE_FALSE(p.tokenizeInputString("<start <end>>"));
+	REQUIRE_FALSE(p.tokenizeInputString("<test>invalid</test/>"));
+}
