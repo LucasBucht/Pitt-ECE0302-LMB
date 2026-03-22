@@ -22,8 +22,7 @@ bool Stack<ItemType>::isEmpty() const
 template<class ItemType>
 int Stack<ItemType>::size() const
 {
-	// TODO
-	return 0;
+	return currentSize;
 }
 
 template<class ItemType>
