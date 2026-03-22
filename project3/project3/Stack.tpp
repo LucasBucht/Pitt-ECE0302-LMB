@@ -16,8 +16,7 @@ Stack<ItemType>::~Stack()
 template<class ItemType>
 bool Stack<ItemType>::isEmpty() const
 {
-	// TODO
-	return true;
+	return currentSize == 0;
 }
 
 template<class ItemType>
