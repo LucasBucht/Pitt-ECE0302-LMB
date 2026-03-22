@@ -1,5 +1,6 @@
 #include "SortedList.hpp"
 #include <stdexcept>
+#include <cstdlib>
 
 template <typename T>
 SortedList<T>::SortedList()
@@ -51,7 +52,7 @@ void SortedList<T>::insert(const T& item)
 {
   std::size_t pos = 0;
   std::size_t len = List<T>::getLength();
-  while (pos < len && List<T>::getEntry(pos) <= item){
+  while (pos < len && !(item < List<T>::getEntry(pos))){
     pos++;
   }
 
@@ -89,12 +90,8 @@ std::size_t SortedList<T>::getPosition(const T& item)
 {
   std::size_t len = List<T>::getLength();
   for (std::size_t i = 0; i < len; i++){
-    T cur = List<T>::getLength();
-    if (cur == item){
+    if (!(List<T>::getEntry(i) < item) && !(item < List<T>::getEntry(i))){
       return i;
-    }
-    if (cur > item){
-      break;
     }
   }
   throw std::invalid_argument("getPosition item not found");

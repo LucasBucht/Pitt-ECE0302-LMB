@@ -1,4 +1,5 @@
 #include "List.hpp"
+#include <stdexcept> 
 
 template <typename T>
 List<T>::List() : head(nullptr), size(0)
@@ -16,7 +17,7 @@ List<T>::List(const List<T>& x) : head(nullptr), size(0)
 {
   Node<T>* cur = x.head;
   while (cur){
-    instert(size, cur -> getItem());
+    insert(size, cur -> getItem());
     cur = cur -> getNext();
   }
 }
@@ -50,21 +51,20 @@ std::size_t List<T>::getLength() const noexcept
 template <typename T>
 void List<T>::insert(std::size_t position, const T& item)
 {
-  if (position > size){
-    throw std::out_of_range("insert position out of range")
-  }
+  if (position > size)
+    throw std::out_of_range("insert position out of range");
 
   Node<T>* node = new Node<T>(item);
-  if (position == 0){
-    node -> setNext(head);
+  if (position == 0) {
+    node->setNext(head);
     head = node;
   } else {
     Node<T>* prev = head;
-    for (std::size_t i = 0; i < position; i++){
+    for (std::size_t i = 1; i < position; i++){
       prev = prev -> getNext();
     }
     node -> setNext(prev -> getNext());
-    prev -> setnext(node);
+    prev -> setNext(node);
   }
 
   size++;
@@ -84,7 +84,7 @@ void List<T>::remove(std::size_t position)
     head = head -> getNext();
   } else {
     Node<T>* prev = head;
-    for (std::size_t i = 0; i < position - 1; i++){
+    for (std::size_t i = 1; i < position; i++){
       prev = prev -> getNext();
     }
     del = prev -> getNext();
@@ -112,7 +112,7 @@ void List<T>::clear()
 template <typename T>
 T List<T>::getEntry(std::size_t position) const
 {
-  If (position >= size){
+  if (position >= size){
     throw std::out_of_range("getEntry position out of range");
   }
 
