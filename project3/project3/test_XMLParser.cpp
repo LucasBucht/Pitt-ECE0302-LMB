@@ -175,6 +175,7 @@ TEST_CASE("XMLParser: Test XMLParser parse, contains and frequency", "[XMLParser
 */
 /* Your test cases here */
 
+// Stack Tests
 TEST_CASE("Stack: push returns true and increases size", "[Stack]")
 {
     Stack<int> s;
@@ -184,4 +185,12 @@ TEST_CASE("Stack: push returns true and increases size", "[Stack]")
     REQUIRE(s.size() == 2);
     REQUIRE(s.push(30) == true);
     REQUIRE(s.size() == 3);
+}
+
+TEST_CASE("Stack: push onto empty stack makes it non-empty", "[Stack]")
+{
+    Stack<int> s;
+    REQUIRE(s.isEmpty() == true);
+    s.push(42);
+    REQUIRE(s.isEmpty() == false);
 }
