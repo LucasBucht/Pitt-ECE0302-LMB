@@ -204,8 +204,81 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 
 bool XMLParser::parseTokenizedInput()
 {
-	// TODO
-	return false;
+	// Reset parse flag
+	parsedFlag = false;
+
+	if (!tokenizedFlag || tokenizedInputVector.empty()){
+		// Return false if not tokenized or empty
+		return false;
+	}
+
+	while (!parseStack.isEmpty()){
+		// Clear out parseStack
+		parseStack.pop();
+	}
+	elementNameBag.clear();
+
+	// Check if root element has been open or closed
+	bool rootOpened = false;
+	bool rootClosed = false;
+	
+	for (const TokenStruct& tok : tokenizedInputVector){
+		switch (tok.tokenType){
+			case DECLARATION:
+				if (rootOpened){
+					return false;
+				}
+				break;
+			
+			case CONTENT:
+				if (parseStack.isEmpty()){
+					return false;
+				}
+				break;
+			
+			case EMPTY_TAG:
+				if (!rootOpened){
+					rootOpened = true;
+					rootClosed = true;
+				}
+				else if (rootClosed){
+					return false;
+				}
+				elementNameBag.add(tok.tokenString);
+				break;
+
+			case START_TAG:
+				if (rootClosed){
+					return false;
+				}
+				if (!rootOpened){
+					rootOpened = true;
+				}
+				parseStack.push(tok.tokenString);
+				elementNameBag.add(tok.tokenString);
+				break;
+
+			case END_TAG:
+				if (parseStack.isEmpty()){
+					return false;
+				}
+				if (parseStack.peek() != tok.tokenString){
+					return false;
+				}
+				parseStack.pop();
+				if (parseStack.isEmpty()){
+					rootClosed = true;
+				}
+				break;
+		}
+	}
+
+	if (!rootOpened || !rootClosed || parseStack.isEmpty()){
+		return false;
+	}
+
+	parsedFlag = true;
+	return true;
 }
 
 void XMLParser::clear()
