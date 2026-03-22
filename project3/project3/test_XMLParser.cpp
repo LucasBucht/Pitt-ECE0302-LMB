@@ -194,3 +194,13 @@ TEST_CASE("Stack: push onto empty stack makes it non-empty", "[Stack]")
     s.push(42);
     REQUIRE(s.isEmpty() == false);
 }
+
+TEST_CASE("Stack: most recent item accessible using peek", "[Stack]")
+{
+    Stack<std::string> s;
+	REQUIRE_THROWS_AS(s.peek(), std::logic_error);
+    s.push("hello");
+    REQUIRE(s.peek() == "hello");
+    s.push("world");
+    REQUIRE(s.peek() == "world");
+}
