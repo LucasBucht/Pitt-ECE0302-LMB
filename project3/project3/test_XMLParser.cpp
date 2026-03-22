@@ -204,3 +204,21 @@ TEST_CASE("Stack: most recent item accessible using peek", "[Stack]")
     s.push("world");
     REQUIRE(s.peek() == "world");
 }
+
+TEST_CASE("Stack: pop returns false on empty stack", "[Stack]")
+{
+    Stack<int> s;
+    REQUIRE(s.pop() == false);
+}
+
+TEST_CASE("Stack: isEmpty is false after push, true after all pops", "[Stack]")
+{
+    Stack<int> s;
+    s.push(1);
+    s.push(2);
+    REQUIRE(s.isEmpty() == false);
+    s.pop();
+    REQUIRE(s.isEmpty() == false);
+    s.pop();
+    REQUIRE(s.isEmpty() == true);
+}
