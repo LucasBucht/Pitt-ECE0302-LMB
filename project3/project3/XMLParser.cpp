@@ -163,7 +163,7 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 			}
 
 			tokenizedInputVector.push_back(tok);
-			i = closePos++;
+			i = closePos + 1;
 		}
 		else{
             size_t nextTag = inputString.find('<', i);
