@@ -3,14 +3,14 @@
 
 // Helper functions
 
-static bool isNameStartChar(char c)
+static bool isNameStartChar(unsigned char c)
 {
 	// XML name start character must be a letter, underscore, or colon
 	// isNameStartChar checks for valid start character
 	return (std::isalpha(c) || c == '_' || c == ':');
 }
 
-static bool isNameChar(char c)
+static bool isNameChar(unsigned char c)
 {
 	// XML name must contain only letters, underscores, colons, dashes, or periods
 	// isNameChar checks for valid name characters throughout the name
@@ -52,20 +52,154 @@ static std::string extractName(const std::string& body, size_t start = 0)
 }
 
 
-
-
-
 // Main functions
 
-XMLParser::XMLParser()
+XMLParser::XMLParser() : tokenizedFlag(false), parsedFlag(false)
 {
-	// TODO
 } 
 
 bool XMLParser::tokenizeInputString(const std::string &inputString)
 {
-	// TODO
-	return false;
+	// Reset state for every call
+	tokenizedInputVector.clear();
+	while (!parseStack.isEmpty()){
+		parseStack.pop();
+	}
+	elementNameBag.clear();
+	tokenizedFlag = false;
+	parsedFlag = false;
+
+	size_t i = 0;
+	size_t len = inputString.size();
+
+	while (i < len){
+		if (inputString[i] == '<'){
+			// Find closing >
+			size_t closePos = inputString.find('>', i + 1);
+			if (closePos == std::string::npos){
+				// Unclosed
+				return false;
+			}
+			
+			// Body text between < and >
+			std::string body = inputString.substr(i + 1, closePos - i - 1);
+			
+			if (body.find('<') != std::string::npos){
+				// Reject if multiple <
+				return false;
+			}
+
+			TokenStruct tok;
+
+			// <? ... ?>
+			if (!body.empty() && body[0] == '?'){
+				if (closePos < 1 || inputString[closePos - 1] != '?'){
+					// Return false is closing is not ?>
+					return false;				
+				}
+
+				// Get rid of leading and trailing ?
+				std::string inner = body.substr(1, body.size() - 2);
+				
+				if (inner.empty()){
+					// Inner should not be empty
+					return false;
+				}
+
+				tok.tokenType = DECLARATION;
+				tok.tokenString = inner;
+			}
+
+			// </name>
+			else if (body.size() >= 1 && body[0] == '/'){
+				std::string name = extractName(body, 1);
+				if (!isValidName(name)){
+					return false;
+				}
+
+				size_t afterName = name.size() + 1;
+
+				while (afterName < body.size() && std::isspace(body[afterName])){
+					afterName++;
+				}
+
+				if (afterName != body.size()){
+					// Return false if extra characters
+					return false;
+				}
+
+				tok.tokenType = END_TAG;
+				tok.tokenString = name;
+			}
+
+			// <name ... />
+			else if (!body.empty() && body.back() == '/'){
+				std::string nameBody = body.substr(0, body.size() - 1);
+                std::string name = extractName(nameBody, 0);
+
+                if (!isValidName(name)){
+					return false;
+				}
+
+                tok.tokenType = EMPTY_TAG;
+                tok.tokenString = name;
+			}
+
+			// <name ... >
+			else{
+				if (body.empty() || std::isspace(body[0])){
+					// Return false if empty or start with a space
+					return false;
+				}
+
+                std::string name = extractName(body, 0);
+
+                if (!isValidName(name)){
+					return false;
+				}
+
+                tok.tokenType = START_TAG;
+                tok.tokenString = name;
+			}
+
+			tokenizedInputVector.push_back(tok);
+			i = closePos++;
+		}
+		else{
+            size_t nextTag = inputString.find('<', i);
+            std::string content;
+			if (nextTag == std::string::npos){
+    			content = inputString.substr(i);
+			} 
+			else{
+    			content = inputString.substr(i, nextTag - i);
+			}
+            bool allSpace = true;
+            for (char c : content)
+                if (!std::isspace(c)){ 
+					allSpace = false; 
+					break; 
+				}
+
+            if (!allSpace)
+            {
+                TokenStruct tok;
+                tok.tokenType = CONTENT;
+                tok.tokenString = content;
+                tokenizedInputVector.push_back(tok);
+            }
+
+            if (nextTag == std::string::npos){
+    			i = len;
+			} 
+			else{
+    			i = nextTag;
+			}
+        }
+	}
+
+	tokenizedFlag = true;
+    return true;
 } 
 
 bool XMLParser::parseTokenizedInput()
@@ -76,7 +210,13 @@ bool XMLParser::parseTokenizedInput()
 
 void XMLParser::clear()
 {
-	// TODO
+	tokenizedInputVector.clear();
+	while (!parseStack.isEmpty()){
+		parseStack.pop();
+	}
+	elementNameBag.clear();
+	tokenizedFlag = false;
+	parsedFlag = false;
 }
 
 std::vector<TokenStruct> XMLParser::returnTokenizedInput() const
