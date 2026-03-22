@@ -59,6 +59,8 @@ bool Stack<ItemType>::pop()
 template<class ItemType>
 void Stack<ItemType>::clear()
 {
-	// TODO
+	while (!isEmpty()){
+		pop();
+	}
 }
 
