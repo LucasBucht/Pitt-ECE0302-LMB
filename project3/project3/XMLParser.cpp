@@ -273,7 +273,7 @@ bool XMLParser::parseTokenizedInput()
 		}
 	}
 
-	if (!rootOpened || !rootClosed || parseStack.isEmpty()){
+	if (!rootOpened || !rootClosed || !parseStack.isEmpty()){
 		return false;
 	}
 
@@ -299,13 +299,17 @@ std::vector<TokenStruct> XMLParser::returnTokenizedInput() const
 
 bool XMLParser::containsElementName(const std::string &inputString) const
 {
-	// TODO
-	return false;
+	if (!tokenizedFlag || !parsedFlag){
+        throw std::logic_error("containsElementName: input not tokenized/parsed");
+	}
+	return elementNameBag.contains(inputString);
 }
 
 int XMLParser::frequencyElementName(const std::string &inputString) const
 {
-	// TODO
-	return -1;
+	if (!tokenizedFlag || !parsedFlag){
+        throw std::logic_error("frequencyElementName: input not tokenized/parsed");
+	}
+    return elementNameBag.getFrequencyOf(inputString);
 }
 

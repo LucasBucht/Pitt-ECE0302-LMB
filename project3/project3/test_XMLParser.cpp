@@ -10,7 +10,7 @@
 #include "XMLParser.hpp"
 
 /* Provided test cases */
-/*
+
 TEST_CASE("XMLParser: Test int Stack push and size", "[Stack]")
 {
 	Stack<int> intStack;
@@ -154,7 +154,7 @@ TEST_CASE("XMLParser: Test parseTokenizedInput", "[XMLParser]")
 TEST_CASE("XMLParser: Test XMLParser parse, contains and frequency", "[XMLParser]")
 {
 	XMLParser myXMLParser;
-	std::ifstream myfile("../TestFile.txt");
+	std::ifstream myfile("../project3/TestFile.txt");
 	std::string inputString((std::istreambuf_iterator<char>(myfile)), (std::istreambuf_iterator<char>()));
 
 	REQUIRE(myXMLParser.tokenizeInputString(inputString));
@@ -172,7 +172,7 @@ TEST_CASE("XMLParser: Test XMLParser parse, contains and frequency", "[XMLParser
 	REQUIRE(myXMLParser.containsElementName("color_swatch"));
 	REQUIRE(myXMLParser.frequencyElementName("color_swatch") == 15);
 }
-*/
+
 /* Your test cases here */
 
 
@@ -333,4 +333,59 @@ TEST_CASE("XMLParser: name extracted correctly for end tag", "[XMLParser]")
 		REQUIRE(p.tokenizeInputString(" just some content"));
     	REQUIRE_FALSE(p.parseTokenizedInput());
 	}
+}
+
+
+// XMLParser Overarching Tests
+TEST_CASE("XMLParser: empty tag as root is valid", "[XMLParser]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<selfclose/>"));
+    REQUIRE(p.parseTokenizedInput());
+    REQUIRE(p.containsElementName("selfclose"));
+    REQUIRE(p.frequencyElementName("selfclose") == 1);
+}
+
+TEST_CASE("XMLParser: declaration before root is valid", "[XMLParser]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<?xml version=\"1.0\"?><root><child/></root>"));
+    REQUIRE(p.parseTokenizedInput());
+}
+
+TEST_CASE("XMLParser: declaration after root start is invalid", "[XMLParser]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<root><?xml version=\"1.0\"?></root>"));
+    REQUIRE_FALSE(p.parseTokenizedInput());
+}
+
+TEST_CASE("XMLParser: content outside root is invalid", "[XMLParser]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<root>ok</root>trailing"));
+    REQUIRE_FALSE(p.parseTokenizedInput());
+}
+
+
+// XMLParser Contains/Frequency Tests
+
+TEST_CASE("XMLParser: contains/frequency throw if not parsed", "[XMLParser]")
+{
+    XMLParser p;
+    REQUIRE_THROWS_AS(p.containsElementName("anything"), std::logic_error);
+    REQUIRE_THROWS_AS(p.frequencyElementName("anything"), std::logic_error);
+}
+
+
+// XMLParser Clear Tests
+
+TEST_CASE("XMLParser: clear resets all state", "[XMLParser]")
+{
+    XMLParser p;
+    REQUIRE(p.tokenizeInputString("<root/>"));
+    REQUIRE(p.parseTokenizedInput());
+    p.clear();
+    REQUIRE(p.returnTokenizedInput().empty());
+    REQUIRE_THROWS_AS(p.containsElementName("root"), std::logic_error);
 }
