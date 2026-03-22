@@ -10,6 +10,7 @@
 #include "XMLParser.hpp"
 
 /* Provided test cases */
+/*
 TEST_CASE("XMLParser: Test int Stack push and size", "[Stack]")
 {
 	Stack<int> intStack;
@@ -171,5 +172,16 @@ TEST_CASE("XMLParser: Test XMLParser parse, contains and frequency", "[XMLParser
 	REQUIRE(myXMLParser.containsElementName("color_swatch"));
 	REQUIRE(myXMLParser.frequencyElementName("color_swatch") == 15);
 }
-
+*/
 /* Your test cases here */
+
+TEST_CASE("Stack: push returns true and increases size", "[Stack]")
+{
+    Stack<int> s;
+    REQUIRE(s.push(10) == true);
+    REQUIRE(s.size() == 1);
+    REQUIRE(s.push(20) == true);
+    REQUIRE(s.size() == 2);
+    REQUIRE(s.push(30) == true);
+    REQUIRE(s.size() == 3);
+}
