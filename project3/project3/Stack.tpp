@@ -3,9 +3,8 @@
 #include "Stack.hpp"
 
 template<class ItemType>
-Stack<ItemType>::Stack() 
+Stack<ItemType>::Stack() : headPtr(nullptr), currentSize(0) 
 {
-	// TODO
 } 
 
 template<class ItemType>
