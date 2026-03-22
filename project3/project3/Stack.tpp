@@ -37,8 +37,10 @@ bool Stack<ItemType>::push(const ItemType& newItem)
 template<class ItemType>
 ItemType Stack<ItemType>::peek() const
 {
-	// TODO
-	return ItemType();
+	if (isEmpty()) {
+		throw std::logic_error("peek() cannot be called on an empty stack")
+	}
+	return headPtr -> getItem();
 }
 
 template<class ItemType>
