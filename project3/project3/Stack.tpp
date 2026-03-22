@@ -38,7 +38,7 @@ template<class ItemType>
 ItemType Stack<ItemType>::peek() const
 {
 	if (isEmpty()) {
-		throw std::logic_error("peek() cannot be called on an empty stack")
+		throw std::logic_error("peek() cannot be called on an empty stack");
 	}
 	return headPtr -> getItem();
 }
