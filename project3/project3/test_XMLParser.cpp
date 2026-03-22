@@ -241,3 +241,23 @@ TEST_CASE("Stack: clear on already empty stack is safe", "[Stack]")
     REQUIRE_NOTHROW(s.clear());
     REQUIRE(s.isEmpty() == true);
 }
+
+
+// XMLParser Helper Function Tests
+TEST_CASE("XMLParser Helper: checking tag name validity", "[XMLParser][helpers]")
+{
+    XMLParser p;
+	SECTION("Valid: Letters, Underscores, Colons")
+	{
+		REQUIRE(p.tokenizeInputString("<note></note>"));
+		REQUIRE(p.tokenizeInputString("<_tag></_tag>"));
+    	REQUIRE(p.tokenizeInputString("<:tag></:tag>"));
+	}
+    
+	SECTION("Invalid: Numbers, Hyphens, Periods")
+	{
+		REQUIRE_FALSE(p.tokenizeInputString("<1tag></1tag>"));
+		REQUIRE_FALSE(p.tokenizeInputString("<-tag></-tag>"));
+		REQUIRE_FALSE(p.tokenizeInputString("<.tag></.tag>"));
+	}
+}
