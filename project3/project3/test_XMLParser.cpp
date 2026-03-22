@@ -279,7 +279,7 @@ TEST_CASE("XMLParser: checking invalid tokenize cases", "[XMLParser]")
 
 // XMLParser returnTokenizedInput Tests
 
-TEST_CASE("XMLParser: tag name correctly extracted when attributes present", "[XMLParser][helpers]")
+TEST_CASE("XMLParser: tag name correctly extracted when attributes present", "[XMLParser]")
 {
     XMLParser p;
     REQUIRE(p.tokenizeInputString("<note src='x'></note>"));
@@ -289,7 +289,7 @@ TEST_CASE("XMLParser: tag name correctly extracted when attributes present", "[X
 	REQUIRE(tokens[1].tokenString == "note");
 }
 
-TEST_CASE("XMLParser: empty tag name extracted correctly before slash", "[XMLParser][helpers]")
+TEST_CASE("XMLParser: empty tag name extracted correctly before slash", "[XMLParser]")
 {
     XMLParser p;
     REQUIRE(p.tokenizeInputString("<self/>"));
@@ -299,7 +299,7 @@ TEST_CASE("XMLParser: empty tag name extracted correctly before slash", "[XMLPar
     REQUIRE(tokens[0].tokenString == "self");
 }
 
-TEST_CASE("XMLParser: name extracted correctly for end tag", "[XMLParser][helpers]")
+TEST_CASE("XMLParser: name extracted correctly for end tag", "[XMLParser]")
 {
     XMLParser p;
     REQUIRE(p.tokenizeInputString("<root></root>"));
@@ -311,3 +311,26 @@ TEST_CASE("XMLParser: name extracted correctly for end tag", "[XMLParser][helper
     REQUIRE(tokens[1].tokenString == "root");
 }
 
+
+// XMLParser parseTokenizedInput Tests
+ TEST_CASE("XMLParser: checking tokenize validity", "[XMLParser]")
+{
+    XMLParser p;
+	SECTION("Invalid Input Tests"){
+    	REQUIRE_FALSE(p.tokenizeInputString("<start"));
+    	REQUIRE_FALSE(p.tokenizeInputString("<>"));
+    	REQUIRE_FALSE(p.tokenizeInputString("< /end>"));
+    	REQUIRE_FALSE(p.tokenizeInputString("<start <stuff>>"));
+   		REQUIRE_FALSE(p.tokenizeInputString("<test>invalid</test/>"));
+	}
+	SECTION("Valid But Unparseable Input Tests"){
+		REQUIRE(p.tokenizeInputString("<onetag>"));
+    	REQUIRE_FALSE(p.parseTokenizedInput());
+
+		REQUIRE(p.tokenizeInputString("</test>invalid<test>"));
+    	REQUIRE_FALSE(p.parseTokenizedInput());
+
+		REQUIRE(p.tokenizeInputString(" just some content"));
+    	REQUIRE_FALSE(p.parseTokenizedInput());
+	}
+}
