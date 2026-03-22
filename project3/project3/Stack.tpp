@@ -46,8 +46,14 @@ ItemType Stack<ItemType>::peek() const
 template<class ItemType>
 bool Stack<ItemType>::pop() 
 {
-	// TODO
-	return false;
+	if (isEmpty()){
+		return false;
+	}
+	Node<ItemType>* toDelete = headPtr;
+	headPtr = headPtr -> getNext();
+	delete toDelete;
+	currentSize--;
+	return true;
 }
 
 template<class ItemType>
