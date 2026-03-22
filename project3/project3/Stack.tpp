@@ -28,7 +28,9 @@ int Stack<ItemType>::size() const
 template<class ItemType>
 bool Stack<ItemType>::push(const ItemType& newItem)
 {
-	// TODO
+	Node<ItemType>* newNode = new Node<ItemType>(newItem, headPtr);
+	headPtr = newNode;
+	currentSize++;
 	return true;
 }
 
