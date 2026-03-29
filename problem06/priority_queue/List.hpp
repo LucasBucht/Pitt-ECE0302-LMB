@@ -39,7 +39,8 @@ public:
 
 private:
 
-  //TODO
+  Node<T>* head;
+  std::size_t length;
   
 };
 
