@@ -328,10 +328,10 @@ TEST_CASE("XMLParser: name extracted correctly for end tag", "[XMLParser]")
     	REQUIRE_FALSE(p.parseTokenizedInput());
 
 		REQUIRE(p.tokenizeInputString("</test>invalid<test>"));
-    	REQUIRE_FALSE(p.parseTokenizedInput());
+    	REQUIRE(!(p.parseTokenizedInput()));
 
 		REQUIRE(p.tokenizeInputString(" just some content"));
-    	REQUIRE_FALSE(p.parseTokenizedInput());
+    	REQUIRE(!(p.parseTokenizedInput()));
 	}
 }
 

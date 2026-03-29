@@ -30,6 +30,9 @@ static bool isValidName(const std::string& name)
 	}
 
 	for (size_t i = 1; i < name.size(); i++){
+		if (std::isspace((unsigned char)name[i])){
+			return false;
+		}
 		if (!isNameChar(name[i])){
 			// Check all name characters after starting character
 			return false;
@@ -73,6 +76,9 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 	size_t len = inputString.size();
 
 	while (i < len){
+		if (inputString[i] == '>'){
+			return false;
+		}
 		if (inputString[i] == '<'){
 			// Find closing >
 			size_t closePos = inputString.find('>', i + 1);
@@ -87,6 +93,13 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 			if (body.find('<') != std::string::npos){
 				// Reject if multiple <
 				return false;
+			}
+
+			// A newline inside a tag body is invalid
+			for (char c : body){
+				if (c == '\n' || c == '\r'){
+					return false;
+				}
 			}
 
 			TokenStruct tok;
@@ -154,6 +167,11 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 
                 std::string name = extractName(body, 0);
 
+				size_t afterName = name.size();
+				if (afterName < body.size() && !std::isspace(body[afterName])){
+					return false;
+				}
+
                 if (!isValidName(name)){
 					return false;
 				}
@@ -166,7 +184,12 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 			i = closePos + 1;
 		}
 		else{
-            size_t nextTag = inputString.find('<', i);
+            size_t nextAngle = inputString.find_first_of("<>", i);
+			size_t nextTag = nextAngle;
+			if (nextAngle != std::string::npos && inputString[nextAngle] == '>'){
+				return false;
+			}
+    
             std::string content;
 			if (nextTag == std::string::npos){
     			content = inputString.substr(i);
@@ -196,6 +219,10 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
     			i = nextTag;
 			}
         }
+	}
+
+	if (tokenizedInputVector.empty()){
+		return false;
 	}
 
 	tokenizedFlag = true;
