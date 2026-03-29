@@ -1,4 +1,6 @@
+#include "Node.hpp"
 #include "List.hpp"
+
 
 template <typename T>
 List<T>::List() : head(nullptr), length(0)
@@ -17,7 +19,7 @@ List<T>::List(const List<T>& x) : head(nullptr), length(0)
   Node<T>* cur = x.head;
   while (cur != nullptr){
     insert(length, cur -> getItem());
-    cur cur -> getNext();
+    cur = cur -> getNext();
   }
 }
 
@@ -56,12 +58,15 @@ void List<T>::insert(std::size_t position, const T& item)
 
   Node<T>* newNode = new Node<T>(item);
 
-  if (position == 0){
+  if (position == 0) {
+    newNode -> setNext(head);
+    head = newNode;
+  } else {
     Node<T>* cur = head;
-    for (std::size_t i = 0; i < position; i++){
+    for (std::size_t i = 0; i < position - 1; i++){
       cur = cur -> getNext();
     }
-    newNode -> setNext(cur -> getNext());
+    newNode->setNext(cur->getNext());
     cur -> setNext(newNode);
   }
   length++;

@@ -2,8 +2,8 @@
 #define _LIST_ITERATOR_HPP_
 
 #include <iterator>
+#include "Node.hpp"
 
-#include "List.hpp"
 
 // forward declaration
 template <typename T> class List;
@@ -14,7 +14,7 @@ class ListIterator : public std::iterator<std::input_iterator_tag, T> {
     public:
         /* Change the second constructor argument to Node<T>* if using a linked implementation */
         // ListIterator(List<T>* listPtr, Node<T>* nodePtr);
-        ListIterator(List<T>* listPtr, T* itemPtr);
+        ListIterator(List<T>* listPtr, Node<T>* nodePtr);
 
         T operator*() const;
 
@@ -25,9 +25,9 @@ class ListIterator : public std::iterator<std::input_iterator_tag, T> {
         bool operator!=(const ListIterator<T>& rhs) const;
     
     private:
-    
-    List<T>*   listPtr;
-    Node<T>*   nodePtr;  
+
+    List<T>* listPtr;
+    Node<T>* nodePtr;  
 };
 
 #include "ListIterator.tpp"

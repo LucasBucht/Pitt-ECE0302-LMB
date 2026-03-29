@@ -1,8 +1,10 @@
+#include "Node.hpp"
 #include "ListIterator.hpp"
+
 
 /* Change the second constructor argument to Node<T>* if using a linked implementation */
 template <typename T>
-inline ListIterator<T>::ListIterator(List<T> *listPtr, T *itemPtr) 
+inline ListIterator<T>::ListIterator(List<T> *listPtr, Node<T>* nodePtr) 
     : listPtr(listPtr), nodePtr(nodePtr)
 {
 }

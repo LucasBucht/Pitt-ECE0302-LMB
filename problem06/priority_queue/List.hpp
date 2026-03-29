@@ -1,8 +1,10 @@
 #ifndef _LIST_HPP_
 #define _LIST_HPP_
 
+#include "Node.hpp"
 #include "AbstractList.hpp"
 #include "ListIterator.hpp"
+
 
 template <typename T>
 class List: public AbstractList<T>

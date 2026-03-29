@@ -99,4 +99,7 @@ std::size_t SortedList<T, L>::getPosition(const T& newValue)
     }
     pos++;
   }
+
+  throw std::invalid_argument("SortedList::getPosition: item not found");
+  return 0;
 }
