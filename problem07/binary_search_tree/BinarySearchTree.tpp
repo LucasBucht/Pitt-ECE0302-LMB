@@ -155,23 +155,53 @@ template <typename KeyType, typename ItemType>
 bool BinarySearchTree<KeyType, ItemType>::remove(KeyType key)
 {
     if (isEmpty())
-        return false; // empty tree
+        return false;
 
-    // TODO
+    Node<KeyType, ItemType>* curr;
+    Node<KeyType, ItemType>* curr_parent;
+    bool found = search(key, curr, curr_parent);
 
+    if (!found){
+        return false;
+    }
 
-    // case one thing in the tree
+    // Node has 2 children
+    if (curr -> left != nullptr && curr -> right != nullptr){
+        Node<KeyType, ItemType>* inorder;
+        Node<KeyType, ItemType>* inorder_par;
+        inorder_successor(curr, inorder, inorder_par);
 
-    // case, found deleted item at leaf
+        // Copy successor's data up into curr
+        curr -> key  = inorder -> key;
+        curr -> data = inorder -> data;
 
-    // case, item to delete has only a right child
+        // Delete the inorder successor node
+        curr = inorder;
+        curr_parent = inorder_par;
+    }
 
-    // case, item to delete has only a left child
+    // Identify the child or nullptr if leaf
+    Node<KeyType, ItemType>* child =
+        (curr -> left != nullptr) ? curr -> left : curr -> right;
 
-    // case, item to delete has two children
+    // Only one item in the tree
+    if (curr_parent == nullptr){
+        root = child;           // child is nullptr for a leaf root
+        delete curr;
+        return true;
+    }
 
-    return false; 
+    // Leaf or one child
+    if (curr_parent->left == curr){
+        curr_parent->left  = child;
+    } else {
+        curr_parent->right = child;
+    }
+
+    delete curr;
+    return true;
 }
+
 
 
 template<typename KeyType, typename ItemType>
