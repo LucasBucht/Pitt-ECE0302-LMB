@@ -101,16 +101,15 @@ bool BinarySearchTree<KeyType, ItemType>::insert(
     Node<KeyType, ItemType>* curr_parent;
     bool found = search(key, curr, curr_parent);
 
-    // duplicate key = do not insert
-    if (found){
+    // duplicate key — do not insert
+    if (found)
         return false;
-    }
 
     // create new node
     Node<KeyType, ItemType>* new_node = new Node<KeyType, ItemType>;
-    new_node -> key   = key;
-    new_node -> data  = item;
-    new_node -> left  = nullptr;
+    new_node -> key = key;
+    new_node -> data = item;
+    new_node -> left = nullptr;
     new_node -> right = nullptr;
 
     // empty tree = new node becomes root
@@ -120,14 +119,14 @@ bool BinarySearchTree<KeyType, ItemType>::insert(
     }
 
     // attach as left or right child of the insertion parent
-    if (key < curr_parent -> key){
-    curr_parent -> left  = new_node;
+    if (key < curr -> key){
+        curr -> left  = new_node;
     } else {
-        curr_parent -> right = new_node;   
+        curr -> right = new_node;
     }
-
     return true;
 }
+
 
 template <typename KeyType, typename ItemType>
 bool BinarySearchTree<KeyType, ItemType>::isEmpty()
