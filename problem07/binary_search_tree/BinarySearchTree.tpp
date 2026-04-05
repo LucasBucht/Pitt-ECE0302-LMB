@@ -97,8 +97,36 @@ template <typename KeyType, typename ItemType>
 bool BinarySearchTree<KeyType, ItemType>::insert(
     const KeyType& key, const ItemType& item)
 {
-    // TODO 
-    return false;
+    Node<KeyType, ItemType>* curr;
+    Node<KeyType, ItemType>* curr_parent;
+    bool found = search(key, curr, curr_parent);
+
+    // duplicate key = do not insert
+    if (found){
+        return false;
+    }
+
+    // create new node
+    Node<KeyType, ItemType>* new_node = new Node<KeyType, ItemType>;
+    new_node -> key   = key;
+    new_node -> data  = item;
+    new_node -> left  = nullptr;
+    new_node -> right = nullptr;
+
+    // empty tree = new node becomes root
+    if (curr_parent == nullptr){
+        root = new_node;
+        return true;
+    }
+
+    // attach as left or right child of the insertion parent
+    if (key < curr_parent->key){
+    curr_parent -> left  = new_node;
+    } else {
+        curr_parent -> right = new_node;   
+    }
+
+    return true;
 }
 
 template <typename KeyType, typename ItemType>
