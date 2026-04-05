@@ -122,3 +122,131 @@ TEST_CASE("Priority: Testing Priority Queue Add and isEmpty", "[priority queue]"
 
 /* Your test cases here */
 
+// Iterator
+
+TEST_CASE("Iterator: single element list", "[iterator]") {
+  List<int> lst;
+  lst.insert(0, 42);
+  auto it = lst.begin();
+  REQUIRE(*it == 42);
+  ++it;
+  REQUIRE(it == lst.end());
+}
+
+TEST_CASE("Iterator: equality and inequality", "[iterator]") {
+  List<int> lst;
+  lst.insert(0, 7);
+  auto a = lst.begin();
+  auto b = lst.begin();
+  REQUIRE(a == b);
+  ++b;
+  REQUIRE(a != b);
+  REQUIRE(b == lst.end());
+}
+
+// List exceptions
+
+TEST_CASE("List: out_of_range exceptions", "[list]") {
+  List<int> lst;
+  REQUIRE_THROWS_AS(lst.getEntry(0), std::out_of_range);
+  REQUIRE_THROWS_AS(lst.remove(0), std::out_of_range);
+  REQUIRE_THROWS_AS(lst.setEntry(0,1), std::out_of_range);
+  // only pos 0 valid when empty
+  REQUIRE_THROWS_AS(lst.insert(1, 5), std::out_of_range); 
+
+  lst.insert(0, 10);
+  REQUIRE_THROWS_AS(lst.getEntry(1),   std::out_of_range);
+  REQUIRE_THROWS_AS(lst.remove(1),     std::out_of_range);
+}
+
+// SortedList: duplicates and exceptions
+
+TEST_CASE("SortedList: duplicate values inserted in order", "[sorted list]") {
+  SortedListType sl;
+  sl.insert(5);
+  sl.insert(5);
+  sl.insert(5);
+  REQUIRE(sl.getLength() == 3);
+  REQUIRE(sl.getEntry(0) == 5);
+  REQUIRE(sl.getEntry(1) == 5);
+  REQUIRE(sl.getEntry(2) == 5);
+}
+
+TEST_CASE("SortedList: remove throws invalid_argument when not found", "[sorted list]") {
+  SortedListType sl;
+  sl.insert(3);
+  REQUIRE_THROWS_AS(sl.remove(99), std::invalid_argument);
+}
+
+TEST_CASE("SortedList: getPosition throws invalid_argument when not found", "[sorted list]") {
+  SortedListType sl;
+  sl.insert(1);
+  REQUIRE_THROWS_AS(sl.getPosition(99), std::invalid_argument);
+}
+
+TEST_CASE("SortedList: clear resets list", "[sorted list]") {
+  SortedListType sl;
+  sl.insert(1); 
+  sl.insert(2); 
+  sl.insert(3);
+  sl.clear();
+  REQUIRE(sl.isEmpty());
+  REQUIRE(sl.getLength() == 0);
+}
+
+TEST_CASE("SortedList: copy constructor produces independent copy", "[sorted list]") {
+  SortedListType a;
+  a.insert(10); 
+  a.insert(20);
+  SortedListType b(a);
+  b.insert(5);
+  // a should still have 2 elements
+  REQUIRE(a.getLength() == 2);
+  REQUIRE(b.getLength() == 3);
+  REQUIRE(b.getEntry(0) == 5);
+}
+
+// PriorityQueue: peek, remove, ordering
+
+TEST_CASE("PriorityQueue: peek returns highest priority item", "[priority queue]") {
+  PriorityQueueType pq;
+  pq.add(5); 
+  pq.add(1); 
+  pq.add(9); 
+  pq.add(3);
+  REQUIRE(pq.peek() == 9);
+}
+
+TEST_CASE("PriorityQueue: remove deletes highest priority item", "[priority queue]") {
+  PriorityQueueType pq;
+  pq.add(5); 
+  pq.add(1); 
+  pq.add(9);
+  pq.remove();
+  REQUIRE(pq.peek() == 5);
+  pq.remove();
+  REQUIRE(pq.peek() == 1);
+}
+
+TEST_CASE("PriorityQueue: remove throws when empty", "[priority queue]") {
+  PriorityQueueType pq;
+  REQUIRE_THROWS_AS(pq.remove(), std::out_of_range);
+}
+
+TEST_CASE("PriorityQueue: peek throws when empty", "[priority queue]") {
+  PriorityQueueType pq;
+  REQUIRE_THROWS_AS(pq.peek(), std::out_of_range);
+}
+
+TEST_CASE("PriorityQueue: drain in descending order", "[priority queue]") {
+  PriorityQueueType pq;
+  std::vector<int> vals = {4, 7, 2, 9, 1, 5};
+  for (int v : vals) pq.add(v);
+
+  std::vector<int> sorted = {9, 7, 5, 4, 2, 1};
+  for (int expected : sorted){
+    REQUIRE(pq.peek() == expected);
+    pq.remove();
+  }
+  REQUIRE(pq.isEmpty());
+}
