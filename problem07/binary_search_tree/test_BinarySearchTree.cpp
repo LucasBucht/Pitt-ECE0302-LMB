@@ -75,3 +75,78 @@ TEST_CASE("BST: Test Copy Assign", "[copy assign]") {
 }
 
 /* Your test cases here */
+
+TEST_CASE("Remove root with one child", "[remove]") {
+    BinarySearchTree<int, int> bst;
+    bst.insert(10, 10);
+    bst.insert(20, 20);
+
+    int item;
+    REQUIRE(bst.remove(10));
+    REQUIRE_FALSE(bst.retrieve(10, item));
+    REQUIRE(bst.retrieve(20, item));
+}
+
+TEST_CASE("Remove node with only left child", "[remove]") {
+    BinarySearchTree<int, int> bst;
+    bst.insert(10, 10);
+    bst.insert(5, 5);
+    bst.insert(3, 3);
+
+    int item;
+    REQUIRE(bst.remove(5));
+    REQUIRE_FALSE(bst.retrieve(5, item));
+    REQUIRE(bst.retrieve(3, item));
+    REQUIRE(bst.retrieve(10, item));
+}
+
+TEST_CASE("Remove node with only right child", "[remove]") {
+    BinarySearchTree<int, int> bst;
+    bst.insert(10, 10);
+    bst.insert(5, 5);
+    bst.insert(7, 7);
+
+    int item;
+    REQUIRE(bst.remove(5));
+    REQUIRE_FALSE(bst.retrieve(5, item));
+    REQUIRE(bst.retrieve(7, item));
+    REQUIRE(bst.retrieve(10, item));
+}
+
+TEST_CASE("Remove node with two children", "[remove]") {
+    BinarySearchTree<int, int> bst;
+    bst.insert(10, 10);
+    bst.insert(5, 5);
+    bst.insert(15, 15);
+    bst.insert(12, 12);
+    bst.insert(20, 20);
+
+    int item;
+    REQUIRE(bst.remove(15));
+    REQUIRE_FALSE(bst.retrieve(15, item));
+    REQUIRE(bst.retrieve(10, item));
+    REQUIRE(bst.retrieve(5,  item));
+    REQUIRE(bst.retrieve(12, item));
+    REQUIRE(bst.retrieve(20, item));
+}
+
+TEST_CASE("Remove root with two children", "[remove]") {
+    BinarySearchTree<int, int> bst;
+    bst.insert(10, 10);
+    bst.insert(5,  5);
+    bst.insert(15, 15);
+
+    int item;
+    REQUIRE(bst.remove(10));
+    REQUIRE_FALSE(bst.retrieve(10, item));
+    REQUIRE(bst.retrieve(5,  item));
+    REQUIRE(bst.retrieve(15, item));
+    REQUIRE_FALSE(bst.isEmpty());
+}
+
+TEST_CASE("Remove key not in tree", "[remove]") {
+    BinarySearchTree<int, int> bst;
+    bst.insert(10, 10);
+
+    REQUIRE_FALSE(bst.remove(99));
+}
