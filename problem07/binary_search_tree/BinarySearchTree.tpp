@@ -120,7 +120,7 @@ bool BinarySearchTree<KeyType, ItemType>::insert(
     }
 
     // attach as left or right child of the insertion parent
-    if (key < curr_parent->key){
+    if (key < curr_parent -> key){
     curr_parent -> left  = new_node;
     } else {
         curr_parent -> right = new_node;   
