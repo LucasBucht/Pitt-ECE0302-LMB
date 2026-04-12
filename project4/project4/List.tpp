@@ -1,15 +1,14 @@
 #include "List.hpp"
 
 template <typename T>
-List<T>::List()
+List<T>::List() : head(nullptr), length(0)
 {
-  //TODO
 }
 
 template <typename T>
 List<T>::~List()
 {
-  //TODO
+  clear();
 }
 
 template <typename T>
@@ -21,14 +20,15 @@ List<T>::List(const List<T>& x)
 template <typename T>
 List<T>& List<T>::operator=(List<T> x)
 {
-  //TODO
+  swap(x);
   return *this;
 }
 
 template <typename T>
 void List<T>::swap(List<T>& x) 
 {
-  //TODO
+  std::swap(head, x.head);
+  std::swap(length, x.length);
 }
 
 template <typename T>
