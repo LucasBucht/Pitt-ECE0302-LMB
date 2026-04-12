@@ -1,0 +1,125 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-fd6451d79dc282e2f566.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						3,
+						5
+					]
+				},
+				{
+					"build" : "lib",
+					"jsonFile" : "directory-lib-Debug-705325963b77e62663a0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib",
+					"targetIndexes" : 
+					[
+						1,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "P4",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "compare::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-compare-Debug-881d021772cad4c677ee.json",
+					"name" : "compare",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "image::@306ed2d68c6501e8728f",
+					"jsonFile" : "target-image-Debug-6b60e2bc49bfeccbb3e0.json",
+					"name" : "image",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pathfinder::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pathfinder-Debug-332015a5af946643b13f.json",
+					"name" : "pathfinder",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "submission::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-submission-Debug-8c73c33a5c38336ca11a.json",
+					"name" : "submission",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "test-image::@306ed2d68c6501e8728f",
+					"jsonFile" : "target-test-image-Debug-d1bec28ed0ed5c5c28c7.json",
+					"name" : "test-image",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-queue::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-queue-Debug-c3d34c70f84df216a032.json",
+					"name" : "test-queue",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/project4/build",
+		"source" : "/home/bossdstroyer/ECE0302/Pitt-ECE0302-LMB/project4/project4"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	}
+}
