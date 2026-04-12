@@ -65,7 +65,23 @@ void List<T>::insert(std::size_t position, const T& item)
 template <typename T>
 void List<T>::remove(std::size_t position)
 {
-  //TODO
+  if (position >= length){
+    throw std::out_of_range("List::remove: position out of range");
+  }
+  if (position == 0){
+    Node* temp = head;
+    head = head -> next;
+    delete temp;
+  } else {
+    Node* cur = head;
+    for (std::size_t i = 0; i < position - 1; i++){
+      cur = cur -> next;
+    }
+    Node* temp = cur -> next;
+    cur -> next = temp -> next;
+    delete temp;
+  }
+  length--;
 }
 
 template <typename T>
