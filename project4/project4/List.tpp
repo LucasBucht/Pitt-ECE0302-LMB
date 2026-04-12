@@ -13,9 +13,16 @@ List<T>::~List()
 }
 
 template <typename T>
-List<T>::List(const List<T>& x)
+List<T>::List(const List<T>& x) : head(nullptr), length(0)
 {
-  //TODO
+  Node* src = x.head;
+  Node** dst = &head;
+  while (src != nullptr){
+    *dst = new Node(src -> data);
+    dst = &((*dst) -> next);
+    src = src -> next;
+  }
+  length = x.length;
 }
 
 template <typename T>
@@ -111,5 +118,12 @@ T List<T>::getEntry(std::size_t position) const
 template <typename T>
 void List<T>::setEntry(std::size_t position, const T& newValue)
 {
-  //TODO
+  if (position >= length){
+    throw std::out_of_range("List::setEntry: position out of range");
+  }
+  Node* cur = head;
+  for (std::size_t i = 0; i < position; i++){
+    cur = cur -> next;
+  }
+  cur -> data = newValue;
 }
