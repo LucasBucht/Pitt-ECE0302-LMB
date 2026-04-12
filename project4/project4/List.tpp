@@ -1,4 +1,5 @@
 #include "List.hpp"
+#include <stdexcept>
 
 template <typename T>
 List<T>::List() : head(nullptr), length(0)
@@ -40,14 +41,25 @@ bool List<T>::isEmpty() const noexcept
 template <typename T>
 std::size_t List<T>::getLength() const noexcept
 {
-  //TODO
-  return 0;
+  return length;
 }
 
 template <typename T>
 void List<T>::insert(std::size_t position, const T& item)
 {
-  //TODO
+  if (position > length){
+    throw std::out_of_range("List::insert: position out of range");
+  }
+  if (position == 0){
+    head = new Node(item, head);
+  } else {
+    Node* cur = head;
+    for (std::size_t i = 0; i < position - 1; i++){
+      cur = cur -> next;
+    }
+    cur -> next = new Node(item, cur -> next);
+  }
+  length++;
 }
 
 template <typename T>
