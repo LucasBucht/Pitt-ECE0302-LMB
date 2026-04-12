@@ -87,14 +87,25 @@ void List<T>::remove(std::size_t position)
 template <typename T>
 void List<T>::clear()
 {
-  //TODO
+  while (head != nullptr){
+    Node* temp = head;
+    head = head -> next;
+    delete temp;
+  }
+  length = 0;
 }
 
 template <typename T>
 T List<T>::getEntry(std::size_t position) const
 {
-  //TODO
-  return T();
+  if (position >= length){
+    throw std::out_of_range("List::getEntry: position out of range");
+  }
+  Node* cur = head;
+  for (std::size_t i = 0; i < position; i++){
+    cur = cur -> next;
+  }
+  return cur -> data;
 }
 
 template <typename T>
