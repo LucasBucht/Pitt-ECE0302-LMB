@@ -18,8 +18,10 @@ void Queue<T,L>::dequeue()
 template <typename T, typename L>
 T Queue<T,L>::peekFront() const
 {
-  // TODO
-  return T();
+  if (internal_list.isEmpty()){
+    throw std::out_of_range("Queue::peekFront: queue is empty");
+  }
+  return internal_list.getEntry(0);
 }
 
 template <typename T, typename L>
