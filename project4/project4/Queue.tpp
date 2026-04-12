@@ -3,13 +3,16 @@
 template <typename T, typename L>
 void Queue<T,L>::enqueue(const T& item)
 {
-  // TODO
+  internal_list.insert(internal_list.getLength(), item);
 }
 
 template <typename T, typename L>
 void Queue<T,L>::dequeue()
 {
-  // TODO
+  if (internal_list.isEmpty()){
+    throw std::out_of_range("Queue::dequeue: queue is empty");
+  }
+  internal_list.remove(0);
 }
 
 template <typename T, typename L>
@@ -22,7 +25,6 @@ T Queue<T,L>::peekFront() const
 template <typename T, typename L>
 bool Queue<T,L>::isEmpty() const
 {
-  // TODO
-  return false;
+  return internal_list.isEmpty();
 }
 
