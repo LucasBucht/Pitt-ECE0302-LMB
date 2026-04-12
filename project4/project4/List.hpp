@@ -35,6 +35,12 @@ public:
 
 private:
 
+  struct Node {
+    T data;
+    Node* next;
+    Node(const T& d, Node* n = nullptr) : data(d), next(n) {}
+  };
+  
   Node* head;
   std::size_t length;
   
