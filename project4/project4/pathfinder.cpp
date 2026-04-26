@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
         }
       } else if (p != BLACK && p != WHITE){
         std::cerr << "Error: maze contains invalid pixel color" << std::endl;
+        return EXIT_FAILURE;
       }
     }
   }

@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
-            "args": ["tests/maze00.png", "output00.png"],
+            "args": ["tests/maze01.png", "output01.png"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
