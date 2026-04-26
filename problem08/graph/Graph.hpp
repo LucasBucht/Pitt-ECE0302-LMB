@@ -22,6 +22,12 @@ class Graph: public AbstractGraph<LabelType>
 
         void breadthFirstTraversal(LabelType start, void visit(LabelType&));
   
+    
+    private:
+
+        std::map<LabelType, std::set<LabelType>> adjList;
+
+        int numEdges;
 };
 
 #include "Graph.tpp"
