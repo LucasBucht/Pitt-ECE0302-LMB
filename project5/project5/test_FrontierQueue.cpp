@@ -64,8 +64,21 @@ TEST_CASE("Pop returns min f-cost", "[FrontierQueue]")
     fq.push(10, 5, 5); 
     fq.push(20, 1, 1); 
     fq.push(30, 3, 3);  
-    
+
     State<int> s = fq.pop();
     REQUIRE(s.getValue() == 20);
     REQUIRE(s.getFCost() == 2);
+}
+
+TEST_CASE("Pop order is always ascending f-cost", "[FrontierQueue]")
+{
+    FrontierQueue<int> fq;
+    fq.push(3, 3, 0);
+    fq.push(1, 1, 0);
+    fq.push(2, 2, 0);
+
+    REQUIRE(fq.pop().getValue() == 1);
+    REQUIRE(fq.pop().getValue() == 2);
+    REQUIRE(fq.pop().getValue() == 3);
+    REQUIRE(fq.empty());
 }
