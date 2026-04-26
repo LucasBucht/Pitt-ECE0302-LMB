@@ -22,11 +22,12 @@ bool FrontierQueue<T>::empty() const {
 
 template <typename T> 
 bool FrontierQueue<T>::contains(const T &p) const {
-
-  //TODO
-
+  for (const auto &s : queue) {
+    if (s.getValue() == p) {
+      return true;
+    }
+  }
   return false;
-
 }
 
 template <typename T>
