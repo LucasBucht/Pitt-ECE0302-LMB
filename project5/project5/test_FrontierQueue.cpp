@@ -57,3 +57,15 @@ TEST_CASE("Simple replaceif test", "[FrontierQueue]")
 
 
 /* Your test cases here */
+
+TEST_CASE("Pop returns min f-cost", "[FrontierQueue]")
+{
+    FrontierQueue<int> fq;
+    fq.push(10, 5, 5); 
+    fq.push(20, 1, 1); 
+    fq.push(30, 3, 3);  
+    
+    State<int> s = fq.pop();
+    REQUIRE(s.getValue() == 20);
+    REQUIRE(s.getFCost() == 2);
+}
