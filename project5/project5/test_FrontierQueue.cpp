@@ -82,3 +82,14 @@ TEST_CASE("Pop order is always ascending f-cost", "[FrontierQueue]")
     REQUIRE(fq.pop().getValue() == 3);
     REQUIRE(fq.empty());
 }
+
+TEST_CASE("replaceif does nothing when cost is not lower", "[FrontierQueue]")
+{
+    FrontierQueue<int> fq;
+    fq.push(1, 5, 5);
+
+    fq.replaceif(1, 10);
+    State<int> s = fq.pop();
+    REQUIRE(s.getPathCost() == 5);
+    REQUIRE(s.getFCost() == 10);
+}
