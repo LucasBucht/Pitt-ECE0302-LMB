@@ -67,9 +67,22 @@ bool FrontierQueue<T>::contains(const T &p) const {
 
 template <typename T>
 void FrontierQueue<T>::replaceif(const T &p, std::size_t cost) {
-
-  //TODO
-
+  // Find state, update if new cost is lower, bubble up
+  for (std::size_t i = 0; i < queue.size(); i++) {
+    if (queue[i].getValue() == p) {
+      if (cost < queue[i].getPathCost()) {
+        queue[i].updatePathCost(cost);
+        while (i > 0) {
+          std::size_t parent = (i - 1) / 2;
+          if (queue[parent].getFCost() > queue[i].getFCost()) {
+            std::swap(queue[parent], queue[i]);
+            i = parent;
+          } else {
+            break;
+          }
+        }
+      }
+      return;
+    }
+  }
 }
-
-
