@@ -10,9 +10,19 @@ State<T> FrontierQueue<T>::pop() {
 
 template <typename T>
 void FrontierQueue<T>::push(const T &p, std::size_t cost, std::size_t heur) {
+  // Add to end, bubble up
+  queue.push_back(State<T>(p. cost, heur));
 
-  //TODO: implement this the same way we implemented push in the heap lecture.
-
+  std::size_t i = queue.size() - 1;
+  while (i > 0) {
+    std::size_t parent = (i - 1) / 2;
+    if (queue[parent].getFCost() > queue[i].getFCost()) {
+      std::swap(queue[parent], queue[i]);
+      i = parent;
+    } else {
+      break; 
+    }
+  }
 }
 
 template <typename T>
