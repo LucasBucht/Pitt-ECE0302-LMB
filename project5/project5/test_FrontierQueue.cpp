@@ -93,3 +93,39 @@ TEST_CASE("replaceif does nothing when cost is not lower", "[FrontierQueue]")
     REQUIRE(s.getPathCost() == 5);
     REQUIRE(s.getFCost() == 10);
 }
+
+TEST_CASE("replaceif does nothing when value not found", "[FrontierQueue]")
+{
+    FrontierQueue<int> fq;
+    fq.push(1, 5, 5);
+
+    fq.replaceif(99, 1); 
+    REQUIRE(fq.contains(1));
+    REQUIRE_FALSE(fq.contains(99));
+}
+
+TEST_CASE("replaceif reorders heap correctly", "[FrontierQueue]")
+{
+    FrontierQueue<int> fq;
+    fq.push(1, 10, 10); 
+    fq.push(2, 1, 1);  
+
+    fq.replaceif(1, 0); 
+    REQUIRE(fq.pop().getValue() == 2);
+    REQUIRE(fq.pop().getValue() == 1);
+}
+
+TEST_CASE("Heap handles duplicate f-costs", "[FrontierQueue]")
+{
+    FrontierQueue<int> fq;
+    fq.push(1, 2, 2); 
+    fq.push(2, 2, 2);
+    fq.push(3, 2, 2); 
+
+    int count = 0;
+    while (!fq.empty()) {
+        fq.pop();
+        count++;
+    }
+    REQUIRE(count == 3);
+}
